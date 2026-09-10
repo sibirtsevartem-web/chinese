@@ -126,6 +126,26 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .lesson .word-row>div:last-child{min-width:0!important}
 .lesson .lessonNext{position:static!important;display:block!important;margin-top:14px!important;width:100%!important}
 </style>
+
+<style id="final-layout-fix">
+/* Final mobile layout: the phone header and controls never overlap the artwork. */
+@media(max-width:430px){
+  .app>.top{position:relative!important;left:auto!important;right:auto!important;top:auto!important;padding:12px 12px 8px!important;pointer-events:auto!important;background:#f3ecdf!important;}
+  .mobileMarket{margin-top:0!important;height:calc(100svh - 112px)!important;min-height:650px!important;border-radius:24px!important;overflow:hidden!important;}
+  .mobileMapImage{opacity:.12!important;filter:saturate(.55) blur(.2px)!important;}
+  .mobileMarket:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#f8f2e7cc,#dce8d6b8 55%,#c7d9c9cc);}
+  .mobileTopActions{top:12px!important;right:12px!important;z-index:40!important;}
+  .mobileMishaVoice{top:12px!important;left:12px!important;z-index:40!important;}
+  .mobileHotspots{z-index:30!important;}
+  .mobileHotspots .mh{z-index:31!important;}
+  .mobileBottom{z-index:40!important;bottom:12px!important;}
+  .mobileBottom button{background:#202b35f2!important;}
+  .mobileMarket:before{z-index:35!important;top:12px!important;left:72px!important;right:72px!important;content:"Китайский рынок"!important;font-size:18px!important;padding:11px 6px!important;}
+}
+@media(min-width:431px){
+  .mobileMarket{margin-top:0!important;}
+}
+</style>
 </head>
 <body>
 <div id="identity" class="identity"><div class="idcard"><div class="idcat"><svg viewBox="0 0 120 110"><g class="cat-body"><path d="M31 67Q22 43 32 20L48 30Q60 22 72 30L89 19Q98 44 89 68Q82 91 60 94Q38 91 31 67" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 26L33 7L50 22M83 25L88 7L72 22" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><circle cx="47" cy="49" r="4"/><circle cx="73" cy="49" r="4"/><path d="M55 61Q60 66 65 61" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="82" r="8"/></g></svg></div><div style="font-weight:950;font-size:22px">欢迎来到中国市场！</div><h1>Прежде чем начнём</h1><p>Миша хочет знать, как тебя зовут. Имя сохранится на этом устройстве, а XP, юани и прогресс будут привязаны к твоему профилю.</p><input id="playerName" maxlength="24" placeholder="Например, Артём"><button class="primary green" id="startGame">Начать прогулку</button><div id="saved" class="saved"></div><small class="muted">Без регистрации и пароля. Локальный профиль браузера.</small></div></div>
