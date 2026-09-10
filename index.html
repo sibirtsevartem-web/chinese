@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#9f332c">
 <title>买菜 — Китайский рынок</title>
-<link rel="preload" as="image" href="cover.png">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f3ecdf;color:#251e19;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{max-width:620px;margin:auto;min-height:100vh;padding:12px 13px 34px}button{font:inherit;cursor:pointer}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.brand{font-size:23px;font-weight:950}.muted{color:#777067;font-size:13px}.stats{display:flex;gap:5px}.pill{background:#fffdf8;border-radius:14px;padding:8px 9px;font-weight:900;box-shadow:0 4px 14px #0001}.screen{display:none}.screen.active{display:block}
 .identity{position:fixed;inset:0;background:#f3ecdf;z-index:100;display:grid;place-items:center;padding:18px}.idcard{width:min(470px,100%);background:#fffdf8;border-radius:28px;padding:24px 20px;box-shadow:0 20px 50px #0002;text-align:center}.idcard h1{margin:8px 0 5px;font-size:28px}.idcard p{line-height:1.4;color:#625b52}.idcat{width:120px;margin:auto}.idcard input{width:100%;border:2px solid #e1d9cc;border-radius:15px;padding:13px;font-size:18px;margin:8px 0}.primary,.secondary{width:100%;border:0;border-radius:16px;padding:14px;font-weight:950}.primary{background:#28211c;color:white}.green{background:#527b47}.secondary{background:#ece5d9;margin-top:9px}.saved{margin-top:12px}.saved button{width:100%;border:0;background:#f2eadf;border-radius:13px;padding:10px;margin-top:5px;text-align:left;font-weight:850}
@@ -41,12 +40,12 @@
 .mh.homegoods{left:7%;top:75%;width:34%;height:11%;}
 .mh.clothes{right:7%;top:75%;width:34%;height:11%;}
 .mh.tea{left:36%;top:20%;width:28%;height:10%;}
-.mobileTopActions{opacity:0;position:absolute;right:8px;top:8px;z-index:30;display:flex;gap:5px;}
+.mobileTopActions{position:absolute;right:8px;top:8px;z-index:30;display:flex;gap:5px;}
 .mobileTopActions button{width:42px;height:42px;border:1px solid #ffffff33;border-radius:13px;background:#202b35e8;color:#fff;font-size:20px;box-shadow:0 4px 12px #0005;}
-.mobileTask{display:none;position:absolute;left:10px;right:10px;top:78px;z-index:31;background:#fffdf8ed;border-radius:16px;padding:8px 10px;box-shadow:0 5px 16px #0005;display:flex;align-items:center;gap:8px;font-size:12px;}
+.mobileTask{position:absolute;left:10px;right:10px;top:78px;z-index:31;background:#fffdf8ed;border-radius:16px;padding:8px 10px;box-shadow:0 5px 16px #0005;display:flex;align-items:center;gap:8px;font-size:12px;}
 .mobileTask b{color:#a94e36;white-space:nowrap;}.mobileTask span{font-weight:900;flex:1}.mobileTask button{border:0;border-radius:11px;background:#4d9347;color:#fff;padding:8px 10px;font-weight:950;white-space:nowrap;}
 .mobileMishaVoice{position:absolute;left:10px;top:8px;z-index:31;width:42px;height:42px;border:1px solid #ffffff33;border-radius:50%;background:#202b35e8;color:#fff;font-size:18px;box-shadow:0 4px 12px #0005;}
-.mobileBottom{opacity:0;position:absolute;left:8px;right:8px;bottom:8px;z-index:31;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.mobileBottom{position:absolute;left:8px;right:8px;bottom:8px;z-index:31;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
 .mobileBottom button{border:1px solid #ffffff33;border-radius:14px;background:#202b35e8;color:#fff;padding:7px 4px;font-weight:900;font-size:18px;box-shadow:0 4px 12px #0005;}
 .mobileBottom span{display:block;font-size:9px;margin-top:2px;}
 @media(max-width:430px){
@@ -61,7 +60,7 @@
  .mobileMapImage{object-fit:cover;object-position:center center;}
  .mobileTask{top:58px;font-size:11px;}
  .mobileTask b{font-size:11px;}
- .mobileTopActions{opacity:0;top:106px;right:8px;}
+ .mobileTopActions{top:106px;right:8px;}
  .mobileTopActions button{width:39px;height:39px;font-size:18px;}
  .mobileMishaVoice{top:106px;left:8px;}
 }
@@ -77,7 +76,30 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .orderCount{transition:.15s}.orderCount.updated{transform:scale(1.03);background:#e9f4e5;}
 /* Task is kept away from the map controls */
 .mobileTask{top:auto;bottom:88px;left:10px;right:10px;max-width:calc(100% - 20px);z-index:31;}
-@media(max-width:430px){.mobileTask{bottom:92px;padding:7px 9px;font-size:11px;gap:6px}.mobileTask button{padding:8px 9px}.mobileBottom{opacity:0;bottom:8px;}}
+@media(max-width:430px){.mobileTask{bottom:92px;padding:7px 9px;font-size:11px;gap:6px}.mobileTask button{padding:8px 9px}.mobileBottom{bottom:8px;}}
+
+/* v22 mobile interaction and lesson layout fixes */
+.mobileTask{display:none!important}
+.mobileHotspots{pointer-events:none!important}
+.mobileHotspots .mh{pointer-events:auto!important;display:flex;align-items:flex-end;justify-content:center;padding:0 3px 7px;background:linear-gradient(transparent 35%,#1b1710b8);border:2px solid #fff8;border-radius:14px;color:#fff;text-shadow:0 2px 3px #000;font-size:11px;font-weight:950;line-height:1.05;text-align:center;box-shadow:0 3px 10px #0005}
+.mobileHotspots .mh:after{content:attr(aria-label)}
+.mobileHotspots .mh.locked{filter:grayscale(1);opacity:.55}
+.mobileTopActions,.mobileBottom{pointer-events:auto!important}
+.mobileTopActions button,.mobileBottom button{pointer-events:auto!important;min-height:42px}
+.lesson{overflow:visible!important}
+.teachTop{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.teachTop .catWrap{flex:0 0 84px;width:84px;height:84px;overflow:hidden}
+.teachText{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.teachText b,.teachText .cn,.teachText .py,.teachText .ru{display:block;line-height:1.35}
+.teachText .cn{font-size:23px;margin-top:6px}
+.voiceBtn{display:block!important;width:100%;max-width:100%;white-space:normal;line-height:1.25;margin:10px 0 0!important}
+.lessonBodyWords{display:grid;gap:8px;margin-top:10px}
+.word-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;align-items:start;background:#fffaf2;border-radius:12px;padding:9px}
+.word-row .word-emoji{font-size:25px;line-height:1.2}
+.word-row .word-cn{font-weight:950;font-size:20px;line-height:1.2}
+.word-row .word-py,.word-row .word-ru{display:block;line-height:1.3;margin-top:2px}
+.lessonNext{position:static!important;display:block!important;width:100%!important;margin-top:14px!important;clear:both}
+@media(max-width:430px){.teachTop .catWrap{flex-basis:70px;width:70px;height:70px}.teachText .cn{font-size:20px}.word-row .word-cn{font-size:18px}.mobileHotspots .mh{font-size:10px;padding-bottom:5px}}
 </style>
 </head>
 <body>
@@ -105,6 +127,7 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
       <button onclick="backpack()">🎒</button>
       <button onclick="settings()">⚙️</button>
     </div>
+    
     <button class="mobileMishaVoice" onclick="speakMisha('喵～ 你好！欢迎来到中国市场！')">🔊</button>
     <div class="mobileBottom">
       <button onclick="profile()">🗺️<span>Прогресс</span></button>
@@ -149,7 +172,7 @@ function useProfile(n){current=n;S=profiles[n]||fresh();document.getElementById(
 function createProfile(){const n=document.getElementById('playerName').value.trim();if(!n){document.getElementById('playerName').focus();return}current=n;if(!profiles[n])profiles[n]=fresh();S=profiles[n];document.getElementById('identity').style.display='none';save();speakIntro()}
 function speakIntro(){const a=document.getElementById('guideTitle'),b=document.getElementById('guideText'),c=document.getElementById('progressNote');if(a)a.textContent=`Привет, ${current}!`;if(b)b.textContent='Я Миша. Я буду проводить тебя по рынку: сначала короткий урок, потом закрепительный тест.';if(c)c.textContent=`Твой прогресс: ${S.xp} XP. Открытые зоны остаются доступными для повторения.`;speakMisha('你好！我是米沙。我们一起去中国市场吧！')}
 function updateStageHud(){const l=levelInfo(S.xp);const el=document.getElementById('stageLevel');if(el)el.textContent=l.level;const xb=document.getElementById('stageXp');if(xb)xb.style.width=(l.inLevel/l.need*100)+'%';const xt=document.getElementById('stageXpText');if(xt)xt.textContent=`${l.inLevel} / ${l.need} XP`;const c=document.getElementById('stageCoins');if(c)c.textContent=S.coins;const st=document.getElementById('stageStreak');if(st)st.textContent=S.streak;}
-function update(){document.getElementById('playerBadge').textContent=current?'👤 '+current:'';document.getElementById('xp').textContent=S.xp;document.getElementById('coins').textContent=S.coins;document.getElementById('streak').textContent=S.streak;Object.entries(ZONES).forEach(([k,z])=>{const el=document.querySelector('.s'+({vegetables:'Veg',fruits:'Fruit',tea:'Tea',meat:'Meat',seafood:'Sea',snacks:'Snacks',homegoods:'Home',clothes:'Clothes',spices:'Spices',center:'Center'}[k]||''));if(el){const u=z.unlock||0;el.classList.toggle('locked',S.xp<u);const tag=el.querySelector('.zoneTag');if(tag)tag.textContent=S.xp>=u?'ОТКРЫТО':'🔒 '+u+' XP'}});updateStageHud();}
+function update(){document.getElementById('playerBadge').textContent=current?'👤 '+current:'';document.getElementById('xp').textContent=S.xp;document.getElementById('coins').textContent=S.coins;document.getElementById('streak').textContent=S.streak;Object.entries(ZONES).forEach(([k,z])=>{const map={vegetables:'veg',fruits:'fruit',tea:'tea',meat:'meat',seafood:'sea',snacks:'snacks',homegoods:'homegoods',clothes:'clothes',spices:'spice',center:'center'};const el=document.querySelector('.mh.'+map[k]);if(el){const u=z.unlock||0;el.classList.toggle('locked',S.xp<u);el.setAttribute('aria-label',S.xp>=u?z.title.replace(/^\S+\s*/,''):'🔒 '+z.title.replace(/^\S+\s*/,'')+' · '+u+' XP')}});updateStageHud();}
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}function goHome(){show('home');update()}
 function levelInfo(xp){const level=Math.floor(xp/100)+1;const inLevel=xp%100;return {level,inLevel,need:100}}
 function unlock(k){const u=ZONES[k]?.unlock??0;return S.xp>=u}
@@ -165,7 +188,8 @@ function speak(text,who='misha'){
 }
 function speakMisha(text){speak('喵～ '+text+' 喵！','misha')}
 function speakVendor(){const v=VENDORS[ZONES[zoneKey]?.vendor||0];speak(v.text,'vendor')}
-function renderLesson(){const z=ZONES[zoneKey],v=VENDORS[z.vendor];document.getElementById('lessonTitle').textContent=z.title;document.getElementById('lessonCounter').textContent='Урок 1/1';document.getElementById('lessonBar').style.width='35%';document.getElementById('lessonBody').innerHTML=`<div class="vendor"><div class="vendorFace">${v.face}</div><div class="vendorInfo"><b>${v.name}</b><span class="muted">У продавца свой голос.</span><button class="voiceBtn" onclick="speakVendor()">🔊 Послушать продавца</button></div></div><div class="teach"><div class="teachTop"><div class="catWrap"><div class="cat"><svg viewBox="0 0 120 120"><g class="cat-body"><path d="M30 76Q19 47 31 23L50 35Q60 29 70 35L90 22Q101 49 89 76Q82 101 60 104Q38 101 30 76" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 29L32 8L51 25M82 28L89 8L70 25" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><ellipse cx="47" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><ellipse cx="73" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><path d="M55 68Q60 73 65 68" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="90" r="9"/><path d="M53 89h14M60 83v14" stroke="#7c5113" stroke-width="2"/><path d="M33 77Q15 72 11 57Q26 61 39 72" fill="none" stroke="#e88b2f" stroke-width="10" stroke-linecap="round" class="cat-tail"/><path d="M88 58Q108 53 105 36Q102 25 96 29Q90 34 93 47" fill="#f6a45b" stroke="#8a431f" stroke-width="3" class="cat-paw"/></g></svg></div><div class="teachText"><b>Миша объясняет</b><div style="margin-top:4px">${z.intro}</div><div class="cn">${z.phrase[0]}</div><div class="py">${z.phrase[1]}</div><div class="ru">${z.phrase[2]}</div><button class="voiceBtn" onclick="speakMisha('${z.phrase[0]}')">🔊 Послушать Мишу</button></div></div><div class="rule"><b>📌 Правило</b>${z.rule}</div></div><div class="rule"><b>🧺 Слова урока</b>${z.items.map(x=>`${x[0]} <b>${x[2]}</b> — ${x[3]} — ${x[1]}`).join('<br>')}</div>`;document.getElementById('lessonNext').textContent='А теперь закрепительный тест →';document.getElementById('lessonNext').onclick=startQuiz}
+function renderLesson(){const z=ZONES[zoneKey],v=VENDORS[z.vendor];document.getElementById('lessonTitle').textContent=z.title;document.getElementById('lessonCounter').textContent='Урок 1/1';document.getElementById('lessonBar').style.width='35%';document.getElementById('lessonBody').innerHTML=`<div class="vendor"><div class="vendorFace">${v.face}</div><div class="vendorInfo"><b>${v.name}</b><span class="muted">У продавца свой голос.</span><button class="voiceBtn" onclick="speakVendor()">🔊 Послушать продавца</button></div></div><div class="teach"><div class="teachTop"><div class="catWrap"><div class="cat"><svg viewBox="0 0 120 120"><g class="cat-body"><path d="M30 76Q19 47 31 23L50 35Q60 29 70 35L90 22Q101 49 89 76Q82 101 60 104Q38 101 30 76" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 29L32 8L51 25M82 28L89 8L70 25" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><ellipse cx="47" cy="56" rx="4" ry="5" fill="#35241b"/><ellipse cx="73" cy="56" rx="4" ry="5" fill="#35241b"/><path d="M55 68Q60 73 65 68" fill="none" stroke="#6d3420" stroke-width="3"/><circle cx="60" cy="90" r="9" fill="#e6b84b"/><path d="M53 89h14M60 83v14" stroke="#7c5113" stroke-width="2"/><path d="M33 77Q15 72 11 57Q26 61 39 72" fill="none" stroke="#e88b2f" stroke-width="10" stroke-linecap="round"/><path d="M88 58Q108 53 105 36Q102 25 96 29Q90 34 93 47" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/></g></svg></div><div class="teachText"><b>Миша объясняет</b><div style="margin-top:6px">${z.intro}</div><div class="cn">${z.phrase[0]}</div><div class="py">${z.phrase[1]}</div><div class="ru">${z.phrase[2]}</div><button class="voiceBtn" onclick="speakMisha('${z.phrase[0]}')">🔊 Послушать Мишу</button></div></div><div class="rule"><b>📌 Правило</b><div>${z.rule}</div></div></div><div class="rule"><b>🧺 Слова урока</b><div class="lessonBodyWords">${z.items.map(x=>`<div class="word-row"><div class="word-emoji">${x[0]}</div><div><div class="word-cn">${x[2]}</div><span class="word-py">${x[3]}</span><span class="word-ru">${x[1]}</span></div></div>`).join('')}</div></div>`;document.getElementById('lessonNext').textContent='А теперь закрепительный тест →';document.getElementById('lessonNext').onclick=startQuiz}
+
 function startQuiz(){quiz=ZONES[zoneKey].items.map(x=>x);qi=0;score=0;errors=[];show('quiz');renderQuiz()}
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function renderQuiz(){const z=ZONES[zoneKey];lockedAnswer=false;const q=quiz[qi];document.getElementById('quizTitle').textContent=z.title;document.getElementById('quizCounter').textContent=`${qi+1} / ${quiz.length}`;document.getElementById('quizBar').style.width=(qi/quiz.length*100)+'%';document.getElementById('quizScene').innerHTML=`<div class="teach"><div class="teachTop"><div class="catWrap"><div class="cat"><svg viewBox="0 0 120 120"><g class="cat-body"><path d="M30 76Q19 47 31 23L50 35Q60 29 70 35L90 22Q101 49 89 76Q82 101 60 104Q38 101 30 76" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 29L32 8L51 25M82 28L89 8L70 25" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><ellipse cx="47" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><ellipse cx="73" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><path d="M55 68Q60 73 65 68" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="90" r="9"/><path d="M53 89h14M60 83v14" stroke="#7c5113" stroke-width="2"/><path d="M33 77Q15 72 11 57Q26 61 39 72" fill="none" stroke="#e88b2f" stroke-width="10" stroke-linecap="round" class="cat-tail"/><path d="M88 58Q108 53 105 36Q102 25 96 29Q90 34 93 47" fill="#f6a45b" stroke="#8a431f" stroke-width="3" class="cat-paw"/></g></svg></div><div class="teachText"><b>Миша:</b> не спеши. Сначала вспомни правило урока.</div></div></div>`;document.getElementById('question').textContent=qi===0?ZONES[zoneKey].grammar:'Выбери правильный вариант:';document.getElementById('questionListen').onclick=()=>speakMisha(q[2]);const opts=shuffle([q,...shuffle(z.items.filter(x=>x[2]!==q[2])).slice(0,3)]);const answers=document.getElementById('answers');answers.innerHTML='';opts.forEach(o=>{const b=document.createElement('button');b.className='ans';b.innerHTML=`<div class="cn">${o[2]}</div><div class="py">${o[3]}</div><div class="ru">${o[1]}</div>`;b.onclick=()=>answer(b,o,q);answers.appendChild(b)});document.getElementById('feedback').textContent='';document.getElementById('quizNext').style.display='none'}
