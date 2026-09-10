@@ -3,195 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#a9362d">
+<meta name="theme-color" content="#9f332c">
 <title>买菜 — Китайский рынок</title>
 <style>
-.identity-screen{position:fixed;inset:0;background:#f4eee2;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}.identity-card{width:min(460px,100%);background:#fffdf8;border-radius:28px;padding:25px 21px;box-shadow:0 18px 45px #0002;text-align:center}.identity-cat{font-size:78px;line-height:1;margin-bottom:7px}.identity-cn{font-size:22px;font-weight:950;margin-bottom:5px}.identity-card h1{font-size:28px;margin:6px 0}.identity-card p{color:#625b52;line-height:1.4;margin:8px 0 17px}.identity-card label{display:block;text-align:left;font-weight:900;margin-bottom:6px}.identity-card input{width:100%;border:2px solid #e1d9cc;background:#fff;border-radius:15px;padding:14px;font-size:18px;outline:none;margin-bottom:10px}.identity-card input:focus{border-color:#527b47}.identity-note{display:block;color:#8a8177;margin-top:11px}.saved-profiles{margin-top:14px;text-align:left}.saved-profile{width:100%;border:0;background:#f3ece0;border-radius:13px;padding:10px 12px;margin-top:6px;text-align:left;font-weight:850}.saved-profile small{display:block;color:#777067;margin-top:2px}
+*{box-sizing:border-box}body{margin:0;background:#f3ecdf;color:#251e19;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{max-width:620px;margin:auto;min-height:100vh;padding:12px 13px 34px}button{font:inherit;cursor:pointer}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.brand{font-size:23px;font-weight:950}.muted{color:#777067;font-size:13px}.stats{display:flex;gap:5px}.pill{background:#fffdf8;border-radius:14px;padding:8px 9px;font-weight:900;box-shadow:0 4px 14px #0001}.screen{display:none}.screen.active{display:block}
+.identity{position:fixed;inset:0;background:#f3ecdf;z-index:100;display:grid;place-items:center;padding:18px}.idcard{width:min(470px,100%);background:#fffdf8;border-radius:28px;padding:24px 20px;box-shadow:0 20px 50px #0002;text-align:center}.idcard h1{margin:8px 0 5px;font-size:28px}.idcard p{line-height:1.4;color:#625b52}.idcat{width:120px;margin:auto}.idcard input{width:100%;border:2px solid #e1d9cc;border-radius:15px;padding:13px;font-size:18px;margin:8px 0}.primary,.secondary{width:100%;border:0;border-radius:16px;padding:14px;font-weight:950}.primary{background:#28211c;color:white}.green{background:#527b47}.secondary{background:#ece5d9;margin-top:9px}.saved{margin-top:12px}.saved button{width:100%;border:0;background:#f2eadf;border-radius:13px;padding:10px;margin-top:5px;text-align:left;font-weight:850}
+.hero{border-radius:25px;overflow:hidden;position:relative;height:285px;background:#8e3029;box-shadow:0 12px 28px #0002}.hero img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:.82}.shade{position:absolute;inset:0;background:linear-gradient(180deg,#0001 25%,#000b 100%)}.heroText{position:absolute;left:18px;right:18px;bottom:17px;color:#fff}.heroText .cn{font-size:38px;font-weight:950}.heroText h1{margin:0 0 4px;font-size:26px}.heroText p{margin:0;line-height:1.3}
+.guide{margin-top:10px;background:#fffdf8;border-radius:20px;padding:13px;display:flex;gap:12px;align-items:center;box-shadow:0 5px 18px #0001}.catWrap{width:92px;min-width:92px;height:92px;position:relative}.cat{position:absolute;inset:0}.cat svg{width:100%;height:100%;overflow:visible}.cat-body{animation:breath 2.3s ease-in-out infinite;transform-origin:50% 78%}.cat-tail{animation:tail 1.8s ease-in-out infinite;transform-origin:80% 65%}.cat-paw{animation:wave 1.15s ease-in-out infinite;transform-origin:75% 75%}.cat-ear{animation:ear 3s ease-in-out infinite}.cat-eye{animation:blink 4.5s infinite}.cat-badge{fill:#e6b84b}.catLabel{font-size:11px;font-weight:950;text-align:center;margin-top:-3px}@keyframes wave{0%,100%{transform:rotate(0)}30%{transform:rotate(-18deg) translateY(-2px)}55%{transform:rotate(14deg) translateY(-5px)}80%{transform:rotate(-8deg)}}@keyframes breath{50%{transform:translateY(-2px) scale(1.015)}}@keyframes tail{50%{transform:rotate(12deg)}}@keyframes ear{50%{transform:rotate(-4deg)}}@keyframes blink{0%,46%,49%,100%{transform:scaleY(1)}47%,48%{transform:scaleY(.08)}}
+.section{font-size:19px;font-weight:950;margin:17px 0 8px}.map{position:relative;height:430px;border-radius:25px;overflow:hidden;background:linear-gradient(#a9d9ee 0 28%,#ead7b5 28% 48%,#9f7048 48%);box-shadow:0 10px 25px #0002;border:5px solid #fffdf8}.lantern{position:absolute;font-size:26px;animation:lantern 2.4s ease-in-out infinite}.l1{left:12%;top:12%}.l2{right:14%;top:18%;animation-delay:.7s}.l3{left:47%;top:7%;animation-delay:1.2s}@keyframes lantern{50%{transform:translateY(4px)}}.mapTitle{position:absolute;top:11px;left:13px;background:#fffdf8eF;border-radius:13px;padding:7px 10px;z-index:3}.mapTitle b{font-size:21px;display:block}.mapTitle small{color:#777;font-weight:800}.road{position:absolute;background:#c9965f;border:4px solid #8b613b;border-radius:50px}.road.h{left:4%;right:4%;top:56%;height:55px}.road.v{top:31%;bottom:5%;left:46%;width:55px}.stall{position:absolute;border:0;border-radius:18px;padding:10px 7px;background:#fffdf8;box-shadow:0 6px 15px #0003;z-index:4;width:29%;font-weight:950;transition:.15s}.stall:active{transform:scale(.95)}.stall .emoji{font-size:36px}.stall small{display:block;color:#777067;margin-top:2px}.sVeg{left:5%;top:31%}.sFruit{right:5%;top:31%}.sMeat{left:7%;bottom:7%}.sSea{right:7%;bottom:7%}.sTea{left:35%;top:31%}.locked{filter:grayscale(.9);opacity:.66}.sellerDot{font-size:17px}.zoneTag{display:inline-block;margin-top:5px;background:#e9f0e4;border-radius:8px;padding:3px 6px;font-size:10px}.lockTag{background:#ece7df}.progressNote{margin-top:8px;background:#fff8df;border-radius:13px;padding:9px;font-size:13px;font-weight:800}
+.lesson{background:#fffdf8;border-radius:24px;padding:17px;box-shadow:0 7px 24px #0001}.back{border:0;background:transparent;font-weight:900;padding:0 0 10px}.lh{display:flex;justify-content:space-between;font-weight:850;color:#756e64}.bar{height:8px;background:#e6dfd4;border-radius:99px;overflow:hidden;margin:7px 0 14px}.bar i{display:block;height:100%;background:#527b47;width:0;transition:.2s}.teach{background:#efe5d4;border-radius:18px;padding:13px;margin-bottom:12px}.teachTop{display:flex;gap:10px;align-items:flex-start}.teachText{flex:1}.teachText b{display:block}.teachText .cn{font-size:24px;margin-top:4px}.teachText .py{color:#777;font-size:13px}.teachText .ru{margin-top:4px}.voiceBtn{border:0;background:#eee7db;border-radius:11px;padding:8px 10px;font-weight:850;margin-top:8px}.rule{background:#f7f0e5;border-radius:15px;padding:10px;margin-top:10px}.rule b{display:block;margin-bottom:3px}.lessonNext{margin-top:11px}.q{font-size:21px;text-align:center;font-weight:950;margin:10px 0 13px}.answers{display:grid;gap:9px}.ans{border:2px solid #e3ddd2;background:#fff;border-radius:16px;padding:12px;text-align:left}.ans .cn{font-size:19px;font-weight:950}.ans .py{font-size:12px;color:#777067;margin-top:2px}.ans .ru{font-size:13px;margin-top:3px;color:#4e4841}.ans.ok{background:#e4f1e2;border-color:#6da069}.ans.no{background:#f8dfdc;border-color:#d2786f}.feedback{min-height:56px;text-align:center;padding:9px 2px;font-weight:850;line-height:1.35}.lessonBox{background:#f5eee3;border-radius:14px;padding:9px;text-align:left;font-weight:700;margin-top:5px}.next{display:none;margin-top:4px}.result{text-align:center;background:#fffdf8;border-radius:24px;padding:20px;box-shadow:0 7px 24px #0001}.big{font-size:58px;font-weight:950}.mistakes{text-align:left;margin-top:14px}.mistake{background:#f5e3dc;border-radius:13px;padding:10px;margin:6px 0}
+.profile{background:#fffdf8;border-radius:23px;padding:18px}.avatar{width:105px;margin:auto}.xpbar{height:11px;background:#e6dfd4;border-radius:99px;overflow:hidden;margin:7px 0 15px}.xpbar i{display:block;height:100%;background:#d3a13d;width:0}.word{display:flex;justify-content:space-between;background:#f7f0e5;border-radius:13px;padding:10px;margin:6px 0}.vendor{background:#fffdf8;border-radius:18px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:10px}.vendorFace{font-size:44px}.vendorInfo{flex:1}.vendorInfo b{display:block}.voiceCard{background:#f4eee2;border-radius:12px;padding:8px;margin-top:7px;font-size:12px}.shop{background:#fffdf8;border-radius:23px;padding:16px;box-shadow:0 7px 24px #0001}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.prod{border:2px solid #e4ddd1;background:#fff;border-radius:13px;padding:8px;text-align:center}.prod .pemoji{font-size:30px}.prod b{display:block;font-size:12px}.prod small{font-size:10px;color:#777}.cart{background:#f3e8d6;border-radius:17px;padding:11px;margin:10px 0}.cartline{display:flex;justify-content:space-between;margin:4px 0}.visualOrder{font-size:34px;align-items:center;gap:14px}.visualOrder span:first-child{font-size:18px;font-weight:950}.visualOrder span:last-child{letter-spacing:2px}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,110px);background:#251e19;color:#fff;padding:12px 15px;border-radius:14px;font-weight:850;transition:.25s;z-index:200;max-width:92%;text-align:center}.toast.show{transform:translate(-50%,0)}
+@media(max-width:430px){.stats{gap:3px}.pill{padding:7px 6px;font-size:12px}.map{height:405px}.products{grid-template-columns:repeat(2,1fr)}.hero{height:260px}}
 
-*{box-sizing:border-box}body{margin:0;background:#f4eee2;color:#211b16;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button{font:inherit}.app{max-width:540px;margin:auto;min-height:100vh;padding:14px 14px 32px}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.brand{font-size:24px;font-weight:950}.stats{display:flex;gap:6px}.pill{background:#fffdf8;border-radius:15px;padding:9px 11px;font-weight:900;box-shadow:0 4px 16px #0001}
-.screen{display:none}.screen.active{display:block}
+/* v15 initial game-screen redesign */
+.gameStage{position:relative;margin:0 -2px}.marketNav{position:absolute;left:0;top:10px;bottom:10px;width:66px;z-index:10;display:flex;flex-direction:column;justify-content:flex-start;gap:5px;padding:7px 5px;background:#202b35dd;border:1px solid #ffffff22;border-radius:17px;box-shadow:8px 10px 22px #0004;backdrop-filter:blur(5px)}.marketNav button{border:0;background:transparent;color:#fff;border-radius:12px;padding:5px 2px;font-size:9px;font-weight:900;line-height:1.05}.marketNav button .ni{display:block;font-size:25px;line-height:28px;margin-bottom:2px}.marketNav button:active{transform:scale(.95)}.marketNav button.active{background:#f2b84b;color:#332415;box-shadow:0 0 0 2px #ffe39b}.stageMain{padding-left:72px}.hero{height:430px;border-radius:24px}.heroText{left:22px;bottom:20px}.heroText .cn{font-size:42px;text-shadow:0 3px 10px #0008}.heroText h1{font-size:30px;text-shadow:0 2px 8px #0008}.heroText p{font-size:15px;text-shadow:0 2px 8px #0008}.stageHud{position:absolute;left:82px;right:12px;top:20px;z-index:7;display:flex;justify-content:space-between;pointer-events:none}.levelCard,.hudCoins{background:#fffdf8eF;border-radius:15px;padding:7px 10px;box-shadow:0 5px 14px #0003;font-weight:950}.levelCard{min-width:125px}.levelLine{font-size:12px}.xpmini{height:7px;background:#ddd4c8;border-radius:99px;overflow:hidden;margin-top:4px}.xpmini i{display:block;height:100%;background:#79a84f;width:40%}.hudCoins{font-size:15px}.sceneGuide{position:absolute;left:92px;top:112px;right:18px;z-index:7;display:flex;align-items:flex-end;gap:8px;pointer-events:none}.sceneBubble{background:#fffdf8ef;border-radius:20px;padding:10px 13px;max-width:245px;font-size:13px;font-weight:800;line-height:1.2;box-shadow:0 5px 15px #0003}.sceneMisha{width:92px;min-width:92px;height:92px;pointer-events:auto}.sceneMisha .catWrap{width:92px;height:92px}.taskCard{position:absolute;z-index:8;left:92px;bottom:104px;background:#fff6ebf2;border:2px solid #f2d4bd;border-radius:15px;padding:8px 10px;max-width:260px;box-shadow:0 5px 14px #0003;font-size:12px;font-weight:800}.taskCard b{display:block;color:#a94e36;margin-bottom:2px}.taskCard .cn{font-size:12px}.taskCard .py{font-size:10px;color:#777}.heroAction{position:absolute;right:17px;bottom:18px;z-index:8;border:0;border-radius:14px;background:#4d9347;color:#fff;padding:11px 14px;font-weight:950;box-shadow:0 5px 12px #0004}.homeMap{margin-top:14px}.homeMap .section{margin-top:0}.homeMap .map{height:390px}.homeBelow{display:none}.heroQuick{position:absolute;right:10px;top:10px;z-index:9;display:flex;gap:6px}.heroQuick button,.heroBottom button{border:1px solid #ffffff33;background:#202b35dd;color:#fff;border-radius:13px;padding:7px 9px;font-weight:900;box-shadow:0 4px 10px #0004}.heroQuick button{font-size:20px}.heroQuick span{display:block;font-size:9px;margin-top:2px}.heroBottom{position:absolute;left:74px;right:10px;bottom:10px;z-index:9;display:flex;gap:7px}.heroBottom button{flex:1;font-size:11px}.sceneSpeaker{position:absolute;right:18px;top:70px;z-index:8;border:0;border-radius:50%;width:38px;height:38px;background:#fffdf8dd;box-shadow:0 4px 10px #0003;font-size:18px}.guide{display:none}
+@media(max-width:430px){.app{padding:8px 9px 28px}.top{margin-bottom:7px}.marketNav{width:58px;left:0;top:8px;bottom:8px}.marketNav button .ni{font-size:23px}.stageMain{padding-left:63px}.hero{height:475px}.stageHud{left:72px;right:7px;top:14px}.levelCard{min-width:112px;padding:6px 8px}.hudCoins{padding:6px 8px}.sceneGuide{left:73px;top:105px;right:8px}.sceneMisha{width:78px;min-width:78px;height:78px}.sceneMisha .catWrap{width:78px;height:78px}.sceneBubble{max-width:190px;font-size:11px;padding:8px 10px}.taskCard{left:73px;bottom:106px;max-width:205px;font-size:11px}.heroAction{right:10px;bottom:15px;padding:10px 12px}.homeMap .map{height:400px}}
 
-.market{position:relative;height:390px;border-radius:26px;overflow:hidden;background:linear-gradient(#b9dff0 0 34%,#ead7b5 34% 58%,#a97945 58% 100%);box-shadow:0 12px 30px #0002;border:5px solid #fffdf8}
-.market-sky{position:absolute;inset:0;background:radial-gradient(circle at 18% 16%,#fff8 0 7%,transparent 8%),radial-gradient(circle at 78% 12%,#fff7 0 5%,transparent 6%)}
-.market-title{position:absolute;top:13px;left:16px;background:#fffdf8eF;border-radius:15px;padding:8px 12px;z-index:30;pointer-events:auto;cursor:pointer;box-shadow:0 4px 12px #0001}.market-title{border:0;text-align:left;font-family:inherit}.market-title span{display:block;font-size:24px;font-weight:950}.market-title small{font-size:11px;color:#777067;font-weight:800}
-.hotspot{position:absolute;pointer-events:auto;border:0;background:#fffdf8;border-radius:18px;padding:7px 8px 5px;box-shadow:0 5px 14px #0002;z-index:5;font-size:34px;line-height:1;cursor:pointer;transition:.15s}.hotspot:active{transform:scale(.94)}.hotspot span{display:block;font-size:10px;font-weight:950;color:#28211b;margin-top:3px}
-.catspot{left:43%;bottom:55px;background:#fff3d8}.vegspot{left:7%;top:112px}.fruitspot{right:7%;top:112px}.shopspot{left:40%;top:105px}.oldspot{right:23%;bottom:56px}.grandspot{left:22%;bottom:55px}
-.stall{position:absolute;top:175px;background:#b84e37;border:4px solid #873729;border-radius:14px;padding:8px;text-align:center;color:#fff;font-weight:950;box-shadow:0 7px 14px #0002}.stall div{font-size:28px;letter-spacing:3px}.stall1{left:5%;width:34%}.stall2{right:5%;width:34%}.sign{position:absolute;right:35%;top:42px;background:#ffe19b;border:3px solid #8b6328;border-radius:9px;padding:5px 8px;text-align:center;font-weight:950;transform:rotate(-3deg);z-index:2}.sign small{font-weight:750}
-.market-tip{position:absolute;left:11px;right:11px;bottom:10px;background:#fffdf8eF;border-radius:14px;padding:9px;text-align:center;font-weight:850;font-size:13px;z-index:7}
-.cover{position:relative;border-radius:25px;overflow:hidden;height:310px;background:#9e342b;box-shadow:0 12px 28px #0002}.cover img{width:100%;height:100%;object-fit:cover;display:block;opacity:.84}.coverShade{position:absolute;inset:0;background:linear-gradient(180deg,#0001 25%,#0009 100%)}.coverText{position:absolute;left:20px;right:20px;bottom:20px;color:#fff}.coverText .cn{font-size:42px;font-weight:950}.coverText h1{font-size:27px;margin:0 0 5px}.coverText p{margin:0;line-height:1.35;font-size:15px;max-width:350px}
-.section{font-size:19px;font-weight:950;margin:18px 0 9px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{border:0;background:#fffdf8;border-radius:20px;padding:16px;text-align:left;box-shadow:0 5px 18px #0000000c}.tile .ico{font-size:35px}.tile b{display:block;margin-top:6px;font-size:17px}.tile small{display:block;color:#777067;margin-top:3px}
-.map{background:#fffdf8;border-radius:22px;padding:7px 15px;box-shadow:0 5px 18px #0000000c}.maprow{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid #eee8dc;cursor:pointer}.maprow:active{transform:scale(.99)}.maprow:last-child{border:0}.node{width:47px;height:47px;border-radius:50%;display:grid;place-items:center;background:#e5efdf;font-size:24px}.node.lock{background:#e7e3dc;filter:grayscale(1)}.maprow b{display:block}.maprow small{color:#777067}.tag{margin-left:auto;background:#eee8dc;padding:5px 8px;border-radius:9px;font-size:11px;font-weight:900}
-.lesson{background:#fffdf8;border-radius:26px;padding:18px;overflow:visible;box-shadow:0 7px 24px #0001}.back{border:0;background:transparent;font-weight:900;padding:2px 0 13px}.lh{display:flex;justify-content:space-between;color:#756e64;font-size:14px;font-weight:850}.bar{height:8px;background:#e6dfd4;border-radius:99px;overflow:hidden;margin:8px 0 16px}.bar i{display:block;height:100%;width:0;background:#527b47;transition:.25s}.scene{background:#efe5d4;border-radius:19px;padding:13px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start;min-width:0}.scene .char{flex:0 0 48px}.bubble{min-width:0;overflow-wrap:anywhere}.char{font-size:48px;line-height:1}.bubble{background:#fffdf8;border-radius:15px;padding:10px 12px;flex:1;min-width:0;overflow-wrap:anywhere}.bubble b{display:block}.cn{font-weight:950}.py{font-size:12px;color:#777067;margin-top:2px}.ru{margin-top:4px}.q{font-size:21px;text-align:center;font-weight:950;margin:9px 0 13px}.answers{display:grid;gap:9px}.ans{border:2px solid #e3ddd2;background:#fff;border-radius:16px;padding:13px;text-align:left}.ans .cn{font-size:19px}.ans.ok{background:#e4f1e2;border-color:#6da069}.ans.no{background:#f8dfdc;border-color:#d2786f}.feedback{min-height:55px;text-align:center;padding:10px 2px;font-weight:850;line-height:1.35}.feedback .lessonBox{background:#f5eee3;border-radius:14px;padding:9px;text-align:left;font-weight:700;margin-top:5px}.primary,.secondary{width:100%;border:0;border-radius:16px;padding:15px;font-weight:950}.primary{background:#211b16;color:#fff}.green{background:#527b47}.secondary{background:#ece5d9;margin-top:9px}.listen{border:0;background:#eee7db;border-radius:12px;padding:8px 11px;font-weight:850;display:block;margin:0 auto 10px}
-.result{text-align:center}.big{font-size:58px;font-weight:950}.mistakes{text-align:left;margin-top:14px}.mistake{background:#f5e3dc;border-radius:13px;padding:10px;margin:6px 0}
-.profile{background:#fffdf8;border-radius:23px;padding:19px}.avatar{text-align:center;font-size:72px}.level{font-weight:900}.xpbar{height:11px;background:#e6dfd4;border-radius:99px;overflow:hidden;margin:7px 0 16px}.xpbar i{display:block;height:100%;background:#d3a13d}.word{display:flex;justify-content:space-between;background:#f7f0e5;border-radius:13px;padding:10px;margin:6px 0}.muted{font-size:13px;color:#777067}
-.vendor{display:flex;gap:9px;align-items:center;background:#fffdf8;border-radius:18px;padding:11px;margin-bottom:10px}.vendor .face{font-size:45px}.vendor select{margin-left:auto;border:0;background:#eee7db;border-radius:10px;padding:8px;font-weight:800}
-.cart{background:#f3e8d6;border-radius:17px;padding:11px;margin:10px 0}.cartline{display:flex;justify-content:space-between;margin:4px 0}.price{font-weight:900}.products{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.prod{min-height:92px}.prod{background:#fff;border:2px solid #e4ddd1;border-radius:13px;padding:8px;text-align:center}.prod .pemoji{font-size:30px}.prod b{display:block;font-size:15px;margin-top:5px}.prod small{color:#777;font-size:10px}.coin{color:#a06d11;font-weight:900}
-.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,100px);background:#211b16;color:#fff;padding:12px 16px;border-radius:15px;font-weight:850;transition:.25s;z-index:20;text-align:center;max-width:90%}.toast.show{transform:translate(-50%,0)}
-@media(max-width:430px){.lesson{padding:14px}.scene{display:block}.scene .char{display:block;text-align:center;margin-bottom:8px}.bubble{width:100%}.q{font-size:19px}.ans{padding:12px}.lh{font-size:13px}.products{grid-template-columns:1fr 1fr}}
+.sSnacks{left:38%;bottom:7%}.sHome{left:38%;top:63%}.sClothes{right:5%;top:63%}.sSpices{left:5%;top:63%}.sCenter{left:35%;top:48%;width:30%}.utilityCard{background:#f7f0e5;border-radius:16px;padding:12px;margin:10px 0}.utilityItem{display:flex;gap:10px;align-items:center;background:#fff;border:2px solid #e4ddd1;border-radius:14px;padding:11px;margin:7px 0}.utilityItem button{margin-left:auto;border:0;border-radius:10px;background:#527b47;color:#fff;padding:8px 10px;font-weight:900}.badgeBig{font-size:38px}.settingRow{display:flex;justify-content:space-between;align-items:center;background:#f7f0e5;border-radius:14px;padding:12px;margin:7px 0}.toggle{border:0;border-radius:99px;background:#527b47;color:#fff;padding:7px 12px;font-weight:900}
+
+/* v19 mobile-first market map: one full-screen vertical scene, no desktop scaling */
+.mobileHome{width:100%;}
+.mobileMarket{position:relative;width:100%;height:calc(100svh - 2px);min-height:620px;overflow:hidden;border-radius:0;background:#1a100c;}
+.mobileMapImage{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.mobileHome ~ *{max-width:100%;}
+.mobileHotspots{position:absolute;inset:0;z-index:20;pointer-events:none;}
+.mh{position:absolute;display:block;pointer-events:auto;border:0;background:transparent;border-radius:22%;padding:0;}
+.mh:active{background:#ffb70333;box-shadow:inset 0 0 0 3px #ffb703aa;}
+/* Coordinates correspond to the vertical map artwork */
+.mh.veg{left:16%;top:34%;width:31%;height:12%;}
+.mh.fruit{left:55%;top:34%;width:30%;height:12%;}
+.mh.meat{left:4%;top:48%;width:31%;height:12%;}
+.mh.spice{right:4%;top:47%;width:31%;height:12%;}
+.mh.center{left:36%;top:50%;width:29%;height:14%;}
+.mh.sea{left:4%;top:62%;width:32%;height:12%;}
+.mh.snacks{right:5%;top:62%;width:31%;height:12%;}
+.mh.homegoods{left:7%;top:75%;width:34%;height:11%;}
+.mh.clothes{right:7%;top:75%;width:34%;height:11%;}
+.mh.tea{left:36%;top:20%;width:28%;height:10%;}
+.mobileTopActions{position:absolute;right:8px;top:8px;z-index:30;display:flex;gap:5px;}
+.mobileTopActions button{width:42px;height:42px;border:1px solid #ffffff33;border-radius:13px;background:#202b35e8;color:#fff;font-size:20px;box-shadow:0 4px 12px #0005;}
+.mobileTask{position:absolute;left:10px;right:10px;top:78px;z-index:31;background:#fffdf8ed;border-radius:16px;padding:8px 10px;box-shadow:0 5px 16px #0005;display:flex;align-items:center;gap:8px;font-size:12px;}
+.mobileTask b{color:#a94e36;white-space:nowrap;}.mobileTask span{font-weight:900;flex:1}.mobileTask button{border:0;border-radius:11px;background:#4d9347;color:#fff;padding:8px 10px;font-weight:950;white-space:nowrap;}
+.mobileMishaVoice{position:absolute;left:10px;top:8px;z-index:31;width:42px;height:42px;border:1px solid #ffffff33;border-radius:50%;background:#202b35e8;color:#fff;font-size:18px;box-shadow:0 4px 12px #0005;}
+.mobileBottom{position:absolute;left:8px;right:8px;bottom:8px;z-index:31;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.mobileBottom button{border:1px solid #ffffff33;border-radius:14px;background:#202b35e8;color:#fff;padding:7px 4px;font-weight:900;font-size:18px;box-shadow:0 4px 12px #0005;}
+.mobileBottom span{display:block;font-size:9px;margin-top:2px;}
+@media(max-width:430px){
+ body{overflow-x:hidden;}
+ .app{max-width:none;width:100%;padding:0;}
+ .app>.top{position:absolute;left:8px;right:8px;top:8px;z-index:40;margin:0;pointer-events:none;}
+ .app>.top .brand{font-size:21px;text-shadow:0 1px 4px #fff;}
+ .app>.top .muted{font-size:13px;text-shadow:0 1px 4px #fff;}
+ .app>.top .stats{display:flex;pointer-events:auto;margin-left:auto;}
+ .app>.top .pill{padding:7px 8px;font-size:12px;}
+ .mobileMarket{height:100svh;min-height:100svh;}
+ .mobileMapImage{object-fit:cover;object-position:center center;}
+ .mobileTask{top:58px;font-size:11px;}
+ .mobileTask b{font-size:11px;}
+ .mobileTopActions{top:106px;right:8px;}
+ .mobileTopActions button{width:39px;height:39px;font-size:18px;}
+ .mobileMishaVoice{top:106px;left:8px;}
+}
+@media(min-width:431px){.mobileMarket{height:min(100vh,900px);}.mobileMapImage{object-fit:contain;}}
+
 </style>
 </head>
 <body>
-<div id="identity" class="identity-screen">
-  <div class="identity-card">
-    <div class="identity-cat">🐈</div>
-    <div class="identity-cn">欢迎来到中国市场！</div>
-    <h1>Прежде чем начнём</h1>
-    <p>Миша хочет знать, как тебя зовут. Имя сохранится на этом устройстве, а твои XP, монеты и прогресс будут привязаны к твоему профилю.</p>
-    <label for="playerName">Твоё имя</label>
-    <input id="playerName" maxlength="24" autocomplete="name" placeholder="Например, Артём">
-    <button class="primary green" id="startGame">Начать прогулку 🐈</button>
-    <div id="savedProfiles" class="saved-profiles"></div>
-    <small class="identity-note">Без регистрации и пароля. Это локальный профиль браузера.</small>
-  </div>
-</div>
-
+<div id="identity" class="identity"><div class="idcard"><div class="idcat"><svg viewBox="0 0 120 110"><g class="cat-body"><path d="M31 67Q22 43 32 20L48 30Q60 22 72 30L89 19Q98 44 89 68Q82 91 60 94Q38 91 31 67" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 26L33 7L50 22M83 25L88 7L72 22" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><circle cx="47" cy="49" r="4"/><circle cx="73" cy="49" r="4"/><path d="M55 61Q60 66 65 61" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="82" r="8"/></g></svg></div><div style="font-weight:950;font-size:22px">欢迎来到中国市场！</div><h1>Прежде чем начнём</h1><p>Миша хочет знать, как тебя зовут. Имя сохранится на этом устройстве, а XP, монеты и прогресс будут привязаны к твоему профилю.</p><input id="playerName" maxlength="24" placeholder="Например, Артём"><button class="primary green" id="startGame">Начать прогулку</button><div id="saved" class="saved"></div><small class="muted">Без регистрации и пароля. Локальный профиль браузера.</small></div></div>
 <div class="app">
 <header class="top"><div><div class="brand">🥬 买菜</div><div id="playerBadge" class="muted"></div></div><div class="stats"><div class="pill">⭐ <span id="xp">0</span></div><div class="pill">🪙 <span id="coins">0</span></div><div class="pill">🔥 <span id="streak">1</span></div></div></header>
-
-<section id="home" class="screen active">
-<div class="market">
-  <div class="market-sky"></div>
-  <button class="market-title" type="button" onclick="goHome()" aria-label="Открыть главную карту"><span>中国市场</span><small>Китайский рынок</small></button>
-
-  <button class="hotspot catspot" onclick="marketAction('cat')" aria-label="Рыжий кот">🐈<span>Кот-проводник</span></button>
-  <button class="hotspot vegspot" onclick="lesson('vegetables')" aria-label="Овощная лавка">🥬<span>Овощи</span></button>
-  <button class="hotspot fruitspot" onclick="lesson('fruits')" aria-label="Фруктовый ряд">🍉<span>Фрукты</span></button>
-  <button class="hotspot shopspot" onclick="shopping()" aria-label="Покупки">🛒<span>Покупки</span></button>
-  <button class="hotspot grandspot" onclick="marketAction('grandpa')" aria-label="Дедушка">👴🏻<span>Дедушка</span></button>
-
-  <div class="stall stall1"><div>🥕 🍅 🥒</div><b>菜市场</b></div>
-  <div class="stall stall2"><div>🍎 🍉 🍊</div><b>水果</b></div>
-  <div class="sign">今天特价！<br><small>Сегодня скидки!</small></div>
-  <div class="market-tip" id="marketTip">🐈 Нажми на кота — он покажет, куда идти.</div>
-</div>
-
-<div class="section">🐱 Сегодня тебя встречает Рыжий Кот</div>
-<div class="scene"><div class="char">🐈</div><div class="bubble"><b>喵！Привет!</b><div class="ru">Я знаю все закоулки рынка. Пойдём — сегодня научимся покупать по-китайски.</div></div></div>
-
-<div class="section">Что будем делать?</div>
-<div class="grid">
-<button class="tile" onclick="lesson('vegetables')"><div class="ico">🥕</div><b>Овощная лавка</b><small>Слова · 8 заданий</small></button>
-<button class="tile" onclick="lesson('fruits')"><div class="ico">🍉</div><b>Фруктовый ряд</b><small>Слова · 7 заданий</small></button>
-<button class="tile" onclick="shopping()"><div class="ico">🛒</div><b>Покупки</b><small>Квест с продавцом</small></button>
-<button class="tile" onclick="profile()"><div class="ico">🏆</div><b>Мой прогресс</b><small>XP · монеты · слова</small></button>
-</div>
-
-<div class="section">🗺️ Карта рынка</div>
-<div class="map">
-<div class="maprow" onclick="lesson('vegetables')"><div class="node">🥬</div><div><b>Овощная лавка</b><small>Бабушка Ли · доступно</small></div><span class="tag">▶</span></div>
-<div class="maprow" onclick="lesson('fruits')"><div class="node">🍎</div><div><b>Фруктовый ряд</b><small>Дедушка Ван · доступно</small></div><span class="tag">▶</span></div>
-<div class="maprow" id="talkRow" onclick="lockedZone(100,'Разговоры')"><div class="node lock" id="talkNode">🗣️</div><div><b>Разговоры</b><small id="talkStatus">Откроется после 100 XP</small></div><span class="tag" id="talkTag">🔒</span></div>
-<div class="maprow" id="haggleRow" onclick="lockedZone(250,'Большой торг')"><div class="node lock" id="haggleNode">💰</div><div><b>Большой торг</b><small id="haggleStatus">Откроется после 250 XP</small></div><span class="tag" id="haggleTag">🔒</span></div>
-</div>
+<section id="home" class="screen active mobileHome">
+  <div class="mobileMarket">
+    <img src="market-map.png" class="mobileMapImage" alt="Карта китайского рынка">
+    <div class="mobileHotspots">
+      <button class="mh veg" onclick="openZone('vegetables')" aria-label="Овощи"></button>
+      <button class="mh fruit" onclick="openZone('fruits')" aria-label="Фрукты"></button>
+      <button class="mh meat" onclick="openZone('meat')" aria-label="Мясо"></button>
+      <button class="mh spice" onclick="openZone('spices')" aria-label="Специи"></button>
+      <button class="mh sea" onclick="openZone('seafood')" aria-label="Морепродукты"></button>
+      <button class="mh snacks" onclick="openZone('snacks')" aria-label="Закуски"></button>
+      <button class="mh homegoods" onclick="openZone('homegoods')" aria-label="Товары для дома"></button>
+      <button class="mh clothes" onclick="openZone('clothes')" aria-label="Одежда"></button>
+      <button class="mh center" onclick="openZone('center')" aria-label="Главная площадь"></button>
+      <button class="mh tea" onclick="openZone('tea')" aria-label="Чай"></button>
+    </div>
+    <div class="mobileTopActions">
+      <button onclick="rating()">🏆</button>
+      <button onclick="wordsPage()">📖</button>
+      <button onclick="backpack()">🎒</button>
+      <button onclick="settings()">⚙️</button>
+    </div>
+    <div class="mobileTask"><b>Задание бабушки</b><span>Купи 🍅 🍅 🥒</span><button onclick="shopping()">К продавцу →</button></div>
+    <button class="mobileMishaVoice" onclick="speakMisha('喵～ 你好！欢迎来到中国市场！')">🔊</button>
+    <div class="mobileBottom">
+      <button onclick="profile()">🗺️<span>Прогресс</span></button>
+      <button onclick="tasks()">📜<span>Задания</span></button>
+      <button onclick="achievements()">🧭<span>Достижения</span></button>
+      <button onclick="conversations()">💬<span>Разговоры</span></button>
+    </div>
+  </div>
 </section>
-
-<section id="shop" class="screen">
-<button class="back" onclick="goHome()">← На рынок</button>
-<div class="vendor"><div class="face" id="vendorFace">👵🏻</div><div><b id="vendorName">Бабушка Ли</b><div class="muted">Продавец овощей</div></div><select id="vendorSelect" onchange="changeVendor()"><option>👵🏻 Бабушка Ли</option><option>👵🏼 Бабушка Чжан</option><option>👴🏻 Дедушка Ван</option><option>👴🏼 Дедушка Чэнь</option></select></div>
-<div class="scene"><div class="char">🐈</div><div class="bubble"><b>Кот: сначала слушай продавца!</b><div class="cn">欢迎！你要买什么？</div><div class="py">Huānyíng! Nǐ yào mǎi shénme?</div><div class="ru">Добро пожаловать! Что ты хочешь купить?</div><button class="listen" style="margin:8px 0 0" onclick="speak('欢迎！你要买什么？')">🔊 Послушать бабушку</button></div></div>
-<div class="lesson">
-<div class="q" style="margin-top:0">Задание продавца</div>
-<div class="cart"><b>🧺 Собери заказ:</b><div class="cartline"><span>2 помидора</span><span id="needTom">0/2</span></div><div class="cartline"><span>1 огурец</span><span id="needCuc">0/1</span></div></div>
-<div class="products" id="products"></div>
-
-<div class="feedback" id="shopFeedback"></div>
-<button class="primary" id="shopNext" style="display:none">Дальше →</button>
-</div>
-</section>
-
-<section id="lesson" class="screen">
-<button class="back" onclick="goHome()">← На рынок</button>
-<div class="lesson"><div class="lh"><span id="lessonTitle">Овощи</span><span id="counter"></span></div><div class="bar"><i id="prog"></i></div><div id="lessonScene"></div>
-<div class="q" id="question"></div><button class="listen" id="listen">🔊 Послушать китайский</button><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><button class="primary" id="next" style="display:none">Дальше →</button></div>
-</section>
-
-<section id="result" class="screen"><div class="lesson result"><div class="muted">Задание завершено</div><div class="big" id="score">0/1</div><h2 id="rtitle"></h2><p id="rtext"></p><div class="mistakes" id="mistakes"></div><button class="primary green" id="again">Повторить ошибки</button><button class="secondary" onclick="goHome()">Вернуться на рынок</button></div></section>
-
-<section id="profile" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="profile"><div class="avatar">🐈👵</div><h2 style="text-align:center;margin:0">Мой прогресс</h2><p class="muted" style="text-align:center">Рыжий Кот хранит твою коллекцию.</p><div class="level">Уровень <span id="lvl"></span> · <span id="lname"></span></div><div class="xpbar"><i id="xpf"></i></div><div class="muted">⭐ <b id="pxp"></b> XP · 🪙 <b id="pc"></b> · 🔥 <b id="pst"></b></div><div class="section">📚 Выученные слова</div><div id="words"></div></div></section>
-</div>
-<div class="toast" id="toast"></div>
-
+<section id="lesson" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="lesson"><div class="lh"><span id="lessonTitle"></span><span id="lessonCounter"></span></div><div class="bar"><i id="lessonBar"></i></div><div id="lessonBody"></div><button id="lessonNext" class="primary green lessonNext">Перейти к тесту →</button></div></section>
+<section id="quiz" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="lesson"><div class="lh"><span id="quizTitle"></span><span id="quizCounter"></span></div><div class="bar"><i id="quizBar"></i></div><div id="quizScene"></div><div class="q" id="question"></div><button id="questionListen" class="voiceBtn">🔊 Послушать</button><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><button id="quizNext" class="primary green next">Дальше →</button></div></section>
+<section id="result" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="result"><div class="muted">Закрепление завершено</div><div class="big" id="score">0/0</div><h2 id="resultTitle"></h2><p id="resultText"></p><div class="mistakes" id="mistakes"></div><button id="again" class="primary green" style="display:none">Повторить ошибки</button><button class="secondary" onclick="goHome()">Вернуться на рынок</button></div></section>
+<section id="shop" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="shop"><div class="vendor"><div class="vendorFace" id="vendorFace">👵🏻</div><div class="vendorInfo"><b id="vendorName">Бабушка Ли</b><span class="muted">Сегодня она говорит медленно и чётко.</span><div class="voiceCard">🔊 <button class="voiceBtn" style="display:inline-block;margin:0" onclick="speakVendor()">Послушать продавца</button></div></div></div><div class="cart"><b>Заказ Миши</b><div class="cartline visualOrder"><span>Купи:</span><span aria-label="два помидора и один огурец">🍅 🍅 🥒</span></div></div><div class="products" id="products"></div><div class="feedback" id="shopFeedback"></div><button class="primary green" id="shopNext" style="display:none">Продолжить</button></div></section>
+<section id="profile" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="profile"><div class="avatar"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="48" fill="#f5d7ad"/><path d="M31 72Q20 42 33 21L50 31Q60 26 70 31L88 21Q101 45 89 72Q81 96 60 99Q39 96 31 72" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/></svg></div><h2 style="text-align:center;margin:5px 0">Мой прогресс</h2><p class="muted" style="text-align:center">Рынок открывается вместе с твоими знаниями.</p><b>Уровень <span id="lvl"></span> · <span id="lname"></span></b><div class="xpbar"><i id="xpf"></i></div><div class="muted">⭐ <b id="pxp"></b> XP · 🪙 <b id="pc"></b> · 🔥 <b id="pst"></b></div><div class="section">📚 Выученные слова</div><div id="words"></div></div></section>
+<section id="utility" class="screen"><button class="back" onclick="goHome()">← На рынок</button><div class="profile"><h2 id="utilityTitle" style="margin-top:0"></h2><p id="utilityText" style="line-height:1.45"></p><div id="utilityBody"></div><button class="primary green" onclick="goHome()">Вернуться на рынок</button></div></section>
+</div><div class="toast" id="toast"></div>
 <script>
-const DATA={
-vegetables:[["🍅","помидор","西红柿","xīhóngshì"],["🥒","огурец","黄瓜","huángguā"],["🥕","морковь","胡萝卜","húluóbo"],["🍆","баклажан","茄子","qiézi"],["🥬","китайская капуста","白菜","báicài"],["🥔","картофель","土豆","tǔdòu"],["🧅","лук","洋葱","yángcōng"],["🌶️","перец чили","辣椒","làjiāo"]],
-fruits:[["🍎","яблоко","苹果","píngguǒ"],["🍌","банан","香蕉","xiāngjiāo"],["🍉","арбуз","西瓜","xīguā"],["🍊","апельсин","橙子","chéngzi"],["🍓","клубника","草莓","cǎoméi"],["🍐","груша","梨","lí"],["🍇","виноград","葡萄","pútá"]]};
-const vendors=[["👵🏻","Бабушка Ли"],["👵🏼","Бабушка Чжан"],["👴🏻","Дедушка Ван"],["👴🏼","Дедушка Чэнь"]];
-// Декоративная вывеска всегда возвращает на карту и не может открыть чужую зону.
-document.querySelector(".market-title").addEventListener("click",function(e){e.preventDefault();e.stopPropagation();goHome();});
-let profiles=JSON.parse(localStorage.getItem("cm4_profiles")||"{}"), currentName=localStorage.getItem("cm4_current")||"", S=currentName&&profiles[currentName]?profiles[currentName]:{"xp":0,"coins":0,"streak":1,"learned":[]},qs=[],qi=0,cat="",score=0,errors=[],locked=false,shopStep=0,order={tom:0,cuc:0};
+const ZONES={
+ vegetables:{title:'🥬 Овощная лавка',vendor:0,grammar:'这是… / 这是什么？',intro:'На первой лавке учимся узнавать овощи и говорить простую конструкцию: «Это…».',phrase:['这是什么？','Zhè shì shénme?','Что это?'],rule:'回答: 这是 + предмет. Например: 这是西红柿。— Это помидор.',items:[['🍅','помидор','西红柿','xīhóngshì'],['🥒','огурец','黄瓜','huángguā'],['🥕','морковь','胡萝卜','húluóbo'],['🥬','китайская капуста','白菜','báicài']]},
+ fruits:{title:'🍉 Фруктовый ряд',vendor:1,grammar:'我喜欢…',intro:'Здесь Миша учит говорить о своих предпочтениях: «Мне нравится…».',phrase:['我喜欢苹果。','Wǒ xǐhuān píngguǒ.','Мне нравятся яблоки.'],rule:'我喜欢 + предмет = «Мне нравится / я люблю…».',items:[['🍎','яблоко','苹果','píngguǒ'],['🍉','арбуз','西瓜','xīguā'],['🍊','апельсин','橙子','chéngzi'],['🍓','клубника','草莓','cǎoméi']]},
+ tea:{title:'🍵 Чайная лавка',vendor:2,grammar:'我要…',intro:'Третья открытая зона: учимся делать заказ. 我要… означает «Я хочу… / мне нужно…».',phrase:['我要茶。','Wǒ yào chá.','Я хочу чай.'],rule:'我要 + предмет = «Я хочу / мне нужно…». Это уже настоящая фраза для рынка.',items:[['🍵','чай','茶','chá'],['🥛','молоко','牛奶','niúnǎi'],['🍯','мёд','蜂蜜','fēngmì'],['🫖','чайник','茶壶','cháhú']]},
+ meat:{title:'🥩 Мясная лавка',vendor:3,grammar:'有 / 没有',intro:'Эта зона откроется после 100 XP. Здесь грамматика сложнее: есть / нет.',phrase:['有牛肉吗？','Yǒu niúròu ma?','Есть говядина?'],rule:'有 = есть, 没有 = нет. Вопрос можно сделать с 吗.',items:[['🥩','говядина','牛肉','niúròu'],['🍗','курица','鸡肉','jīròu'],['🥓','бекон','培根','péigēn'],['🍖','свинина','猪肉','zhūròu']]},
+ seafood:{title:'🦐 Морепродукты',vendor:0,grammar:'多少钱？',intro:'После 200 XP открывается торговля ценами и более длинные фразы.',phrase:['这个多少钱？','Zhège duōshao qián?','Сколько это стоит?'],rule:'多少钱？ = «Сколько стоит?». Далее можно добавлять количество, счётные слова и торг.',items:[['🦐','креветка','虾','xiā'],['🐟','рыба','鱼','yú'],['🦀','краб','螃蟹','pángxiè'],['🦑','кальмар','鱿鱼','yóuyú']]},
+ snacks:{title:'🥟 Лавка закусок',vendor:1,grammar:'你喜欢…吗？',intro:'Здесь учимся спрашивать, нравится ли собеседнику еда, и отвечать коротко.',phrase:['你喜欢包子吗？','Nǐ xǐhuān bāozi ma?','Ты любишь баоцзы?'],rule:'你喜欢…吗？ = «Тебе нравится…?». Да — 喜欢，不喜欢 — не нравится.',items:[['🥟','баоцзы','包子','bāozi'],['🥠','печенье с предсказанием','饼干','bǐnggān'],['🍘','рисовый снек','米饼','mǐbǐng'],['🍡','шарики данго','团子','tuánzi']],unlock:300},
+ homegoods:{title:'🏠 Товары для дома',vendor:2,grammar:'这个 / 那个',intro:'Учимся различать «этот» и «тот» предмет и задавать простой вопрос.',phrase:['这个是什么？','Zhège shì shénme?','Что это?'],rule:'这个 = этот, 那个 = тот. Можно соединять с 这是… и 那是….',items:[['🫖','чайник','茶壶','cháhú'],['🥣','миска','碗','wǎn'],['🧹','метла','扫帚','sàozhou'],['🧺','корзина','篮子','lánzi']],unlock:400},
+ clothes:{title:'👗 Одежда и сувениры',vendor:3,grammar:'我要 + цвет + предмет',intro:'Учимся заказывать одежду по цвету и предмету.',phrase:['我要红色的衣服。','Wǒ yào hóngsè de yīfu.','Я хочу красную одежду.'],rule:'我要 + цвет + 的 + предмет. Например: 我要红色的衣服。',items:[['👕','футболка','T恤','T-xù'],['👘','традиционная одежда','衣服','yīfu'],['🧢','кепка','帽子','màozi'],['🧣','шарф','围巾','wéijīn']],unlock:500},
+ spices:{title:'🫙 Специи и чай',vendor:0,grammar:'一点 / 很',intro:'Учимся говорить о количестве и вкусе: немного и очень.',phrase:['我要一点茶。','Wǒ yào yìdiǎn chá.','Я хочу немного чая.'],rule:'一点 = немного, 很 = очень. Эти слова помогают сделать фразу естественнее.',items:[['🌶️','перец','辣椒','làjiāo'],['🧂','соль','盐','yán'],['🍵','чай','茶','chá'],['🫙','соус','酱','jiàng']],unlock:600},
+ center:{title:'🏮 Главная площадь',vendor:2,grammar:'复习 — Повторение',intro:'Главная площадь — место, где Миша проверяет всё, что ты уже выучил.',phrase:['你会说中文吗？','Nǐ huì shuō Zhōngwén ma?','Ты умеешь говорить по-китайски?'],rule:'Здесь можно повторить пройденные конструкции и получить бонус за серию правильных ответов.',items:[['⭐','уровень','等级','děngjí'],['🪙','монета','金币','jīnbì'],['🎁','подарок','礼物','lǐwù'],['🏮','фонарь','灯笼','dēnglong']],unlock:0}
 
-function save(){if(!currentName)return;profiles[currentName]=S;localStorage.setItem("cm4_profiles",JSON.stringify(profiles));localStorage.setItem("cm4_current",currentName);update()}
-
-function renderProfiles(){
- const box=document.getElementById("savedProfiles"); box.innerHTML="";
- Object.entries(profiles).slice(0,5).forEach(([name,p])=>{
-   const b=document.createElement("button"); b.className="saved-profile"; b.innerHTML=`🐈 ${name}<small>⭐ ${p.xp||0} XP · 🪙 ${p.coins||0}</small>`;
-   b.onclick=()=>useProfile(name); box.appendChild(b);
- });
-}
-function useProfile(name){
- currentName=name; S=profiles[name]||{"xp":0,"coins":0,"streak":1,"learned":[]};
- localStorage.setItem("cm4_current",name);
- document.getElementById("identity").style.display="none";
- document.getElementById("playerName").value=name;
- update();
- speakIntro();
-}
-function createProfile(){
- const input=document.getElementById("playerName"), name=input.value.trim();
- if(!name){input.focus();return}
- currentName=name;
- if(!profiles[name]) profiles[name]={"xp":0,"coins":0,"streak":1,"learned":[]};
- S=profiles[name];
- localStorage.setItem("cm4_current",name);
- localStorage.setItem("cm4_profiles",JSON.stringify(profiles));
- document.getElementById("identity").style.display="none";
- update();
- speakIntro();
-}
-function speakIntro(){
- speak("你好！我是米沙。现在我们一起去逛中国市场，学习中文和这里的规矩。");
- document.getElementById("guideTitle").textContent=`Привет, ${currentName || "друг"}!`;
- document.getElementById("guideText").textContent="Я Миша. Сейчас мы вместе пойдём по китайскому рынку, познакомимся с продавцами, выучим базовые фразы и разберём местные правила.";
- document.getElementById("marketTip").textContent="🐈 Миша: нажми на лавку — и пойдём учиться!";
-}
-document.getElementById("startGame").onclick=createProfile;
-renderProfiles();
-function lockedZone(required,name){if(S.xp>=required){toastMsg('Зона открыта!');}else{toastMsg('🔒 '+name+' откроется после '+required+' XP. Учись и проходи задания!')}}
-
-function update(){document.getElementById("playerBadge").textContent=currentName?"👤 "+currentName:"";xp.textContent=S.xp;coins.textContent=S.coins;streak.textContent=S.streak;let t=S.xp>=100,h=S.xp>=250;talkStatus.textContent=t?"Открыто!":"100 XP для открытия";talkTag.textContent=t?"▶":"🔒";talkNode.classList.toggle("lock",!t);haggleStatus.textContent=h?"Открыто!":"250 XP для открытия";haggleTag.textContent=h?"▶":"🔒";haggleNode.classList.toggle("lock",!h)}
-function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0)}
-function goHome(){show("home");update()}
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function speak(txt){
- if(!("speechSynthesis"in window)){toastMsg("В этом браузере озвучка недоступна");return}
+};
+const VENDORS=[
+ {face:'👵🏻',name:'Бабушка Ли',kind:'grandma1',pitch:1.28,rate:.70,text:'欢迎！来看看吧！'},
+ {face:'👵🏼',name:'Бабушка Чжан',kind:'grandma2',pitch:1.08,rate:.74,text:'苹果很甜！'},
+ {face:'👴🏻',name:'Дедушка Ван',kind:'grandpa',pitch:.78,rate:.68,text:'慢慢说，不着急。'},
+ {face:'👴🏼',name:'Дедушка Чэнь',kind:'grandpa2',pitch:.92,rate:.64,text:'你要什么？'}
+];
+let profiles=JSON.parse(localStorage.getItem('cm19_profiles')||'{}');let current=localStorage.getItem('cm19_current')||'';let S=current&&profiles[current]?profiles[current]:fresh();let zoneKey='',quiz=[],qi=0,score=0,errors=[],lockedAnswer=false,lessonStage=0,shop={tom:0,cuc:0};
+function fresh(){return {xp:0,coins:0,streak:1,learned:[],zones:[]}}
+function save(){if(!current)return;profiles[current]=S;localStorage.setItem('cm19_profiles',JSON.stringify(profiles));localStorage.setItem('cm19_current',current);update()}
+function renderSaved(){const box=document.getElementById('saved');box.innerHTML='';Object.entries(profiles).slice(0,6).forEach(([n,p])=>{const b=document.createElement('button');b.innerHTML=`🐈 ${n}<small style="display:block;color:#777">⭐ ${p.xp||0} XP · 🪙 ${p.coins||0}</small>`;b.onclick=()=>useProfile(n);box.appendChild(b)})}
+function useProfile(n){current=n;S=profiles[n]||fresh();document.getElementById('identity').style.display='none';document.getElementById('playerName').value=n;save();speakIntro()}
+function createProfile(){const n=document.getElementById('playerName').value.trim();if(!n){document.getElementById('playerName').focus();return}current=n;if(!profiles[n])profiles[n]=fresh();S=profiles[n];document.getElementById('identity').style.display='none';save();speakIntro()}
+function speakIntro(){const a=document.getElementById('guideTitle'),b=document.getElementById('guideText'),c=document.getElementById('progressNote');if(a)a.textContent=`Привет, ${current}!`;if(b)b.textContent='Я Миша. Я буду проводить тебя по рынку: сначала короткий урок, потом закрепительный тест.';if(c)c.textContent=`Твой прогресс: ${S.xp} XP. Открытые зоны остаются доступными для повторения.`;speakMisha('你好！我是米沙。我们一起去中国市场吧！')}
+function updateStageHud(){const l=levelInfo(S.xp);const el=document.getElementById('stageLevel');if(el)el.textContent=l.level;const xb=document.getElementById('stageXp');if(xb)xb.style.width=(l.inLevel/l.need*100)+'%';const xt=document.getElementById('stageXpText');if(xt)xt.textContent=`${l.inLevel} / ${l.need} XP`;const c=document.getElementById('stageCoins');if(c)c.textContent=S.coins;const st=document.getElementById('stageStreak');if(st)st.textContent=S.streak;}
+function update(){document.getElementById('playerBadge').textContent=current?'👤 '+current:'';document.getElementById('xp').textContent=S.xp;document.getElementById('coins').textContent=S.coins;document.getElementById('streak').textContent=S.streak;Object.entries(ZONES).forEach(([k,z])=>{const el=document.querySelector('.s'+({vegetables:'Veg',fruits:'Fruit',tea:'Tea',meat:'Meat',seafood:'Sea',snacks:'Snacks',homegoods:'Home',clothes:'Clothes',spices:'Spices',center:'Center'}[k]||''));if(el){const u=z.unlock||0;el.classList.toggle('locked',S.xp<u);const tag=el.querySelector('.zoneTag');if(tag)tag.textContent=S.xp>=u?'ОТКРЫТО':'🔒 '+u+' XP'}});updateStageHud();}
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}function goHome(){show('home');update()}
+function levelInfo(xp){const level=Math.floor(xp/100)+1;const inLevel=xp%100;return {level,inLevel,need:100}}
+function unlock(k){const u=ZONES[k]?.unlock??0;return S.xp>=u}
+function openZone(k){if(!unlock(k)){toastMsg(`🐈 Миша: эта зона откроется после нужного учебного прогресса.`);return}zoneKey=k;lessonStage=0;show('lesson');renderLesson()}
+function speak(text,who='misha'){
+ if(!('speechSynthesis'in window)){toastMsg('В этом браузере озвучка недоступна');return}
  speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(txt);
- u.lang="zh-CN"; u.rate=.78; u.pitch=1;
- setTimeout(()=>speechSynthesis.speak(u),80);
+ const u=new SpeechSynthesisUtterance(text); u.lang='zh-CN';
+ const voices=speechSynthesis.getVoices(); const zh=voices.filter(x=>/^zh(-|_)/i.test(x.lang));
+ if(who==='misha'){u.rate=.96;u.pitch=1.55;if(zh.length)u.voice=zh[0]}
+ else{const v=VENDORS[ZONES[zoneKey]?.vendor||0];u.rate=v.rate;u.pitch=v.pitch;if(zh.length){const i=VENDORS.indexOf(v);u.voice=zh[i%zh.length]}}
+ setTimeout(()=>speechSynthesis.speak(u),60);
 }
-function lesson(c,custom=null){cat=c;qs=custom||shuffle(DATA[c]);qi=0;score=0;errors=[];show("lesson");lessonTitle.textContent=c==="vegetables"?"🥕 Овощная лавка":"🍉 Фруктовый ряд";renderQ()}
-function renderQ(){locked=false;let q=qs[qi];document.getElementById("counter").textContent=`${qi+1} / ${qs.length}`;document.getElementById("prog").style.width=(qi/qs.length*100)+"%";document.getElementById("lessonScene").innerHTML=`<div class="scene"><div class="char">🐈</div><div class="bubble"><b>Рыжий Кот</b><div class="ru">Не спеши. Сначала послушай, потом выбирай.</div></div></div>`;document.getElementById("question").textContent="Как будет по-китайски?";document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";listen.onclick=()=>speak(q[2]);let opts=shuffle([q,...shuffle(DATA[cat].filter(x=>x[2]!==q[2])).slice(0,3)]);answers.innerHTML="";opts.forEach(o=>{let b=document.createElement("button");b.className="ans";b.innerHTML=`<div class="cn">${o[2]}</div><div class="py">${o[3]}</div>`;b.onclick=()=>answer(b,o,q);document.getElementById("answers").appendChild(b)})}
-function answer(btn,o,q){if(locked)return;locked=true;if(o[2]===q[2]){score++;S.xp+=10;S.coins+=2;if(!S.learned.includes(q[2]))S.learned.push(q[2]);btn.classList.add("ok");document.getElementById("feedback").innerHTML=`✅ <b>Правильно!</b><div class="lessonBox"><div class="cn">${q[2]}</div><div class="py">${q[3]}</div><div>Перевод: ${q[1]}</div><div>⭐ +10 XP · 🪙 +2</div></div>`}else{errors.push(q);btn.classList.add("no");document.querySelectorAll(".ans").forEach(b=>{if(b.querySelector(".cn").textContent===q[2])b.classList.add("ok")});document.getElementById("feedback").innerHTML=`👵 <b>Бабушка: «哎呀！不对！再想想！»</b><div class="lessonBox">Ой-ой! Неправильно! Подумай ещё.<br><span class="muted">Правильно: ${q[2]} — ${q[3]} — ${q[1]}</span></div>`}save();document.getElementById("next").style.display="block"}
-document.getElementById("next").onclick=()=>{qi++;if(qi<qs.length)renderQ();else finish()}
-function finish(){prog.style.width="100%";document.getElementById("score").textContent=`${score}/${qs.length}`;document.getElementById("rtitle").textContent=score===qs.length?"Бабушка довольна! 🏆":score>=Math.ceil(qs.length*.75)?"Очень хорошо! 😺":"Бабушка велела повторить 😈";document.getElementById("rtext").textContent=`Получено +${score*10} XP и +${score*2} монет. Всего: ${S.xp} XP.`;document.getElementById("mistakes").innerHTML=errors.length?"<b>Кот отмечает ошибки:</b>": "<b>Все ответы правильные. Рыжий Кот гордится тобой! 🐈</b>";errors.forEach(q=>document.getElementById("mistakes").innerHTML+=`<div class="mistake">${q[0]} <b>${q[2]}</b> — ${q[3]} · ${q[1]}</div>`);document.getElementById("again").style.display=errors.length?"block":"none";document.getElementById("again").onclick=()=>lesson(cat,errors);show("result")}
-function changeVendor(){let i=vendorSelect.selectedIndex;vendorFace.textContent=vendors[i][0];vendorName.textContent=vendors[i][1]}
-function shopping(){shopStep=0;order={tom:0,cuc:0};show("shop");renderShop()}
-function renderShop(){products.innerHTML="";[["🍅","помидор","西红柿","tom",5],["🥒","огурец","黄瓜","cuc",4],["🥕","морковь","胡萝卜","car",3],["🥔","картофель","土豆","pot",2]].forEach(p=>{let b=document.createElement("button");b.className="prod";b.innerHTML=`<div class="pemoji">${p[0]}</div><b>${p[1]}</b><small>Добавлено: <span class="count">0</span></small>`;b.onclick=()=>{speak(p[2]);buy(p)};products.appendChild(b)});needTom.textContent=order.tom+"/2";needCuc.textContent=order.cuc+"/1";shopFeedback.textContent="";shopNext.style.display="none"}
-function buy(p){if(p[3]==="tom"&&order.tom<2)order.tom++;else if(p[3]==="cuc"&&order.cuc<1)order.cuc++;else{toastMsg("Кот: этого пока достаточно 😺");return}needTom.textContent=order.tom+"/2";needCuc.textContent=order.cuc+"/1";if(order.tom===2&&order.cuc===1){shopFeedback.innerHTML=`👵 <b>${vendorName.textContent}:</b> «很好！很好！»<div class="lessonBox">Отлично! Ты собрал правильный заказ.<br><span class="cn">两个西红柿，一个黄瓜</span><br><span class="py">Liǎng ge xīhóngshì, yí ge huángguā.</span><br>Два помидора и один огурец.<br>⭐ +30 XP · 🪙 +10</div>`;S.xp+=30;S.coins+=10;S.learned.push(...["西红柿","黄瓜"].filter(x=>!S.learned.includes(x)));save();shopNext.style.display="block"}}
-shopNext.onclick=()=>{if(S.xp>=100){toastMsg("🗣️ Разговоры с бабушками открыты!");goHome()}else{toastMsg("🐈 Ещё немного XP — и откроем разговоры.");goHome()}}
-function profile(){show("profile");let l=Math.floor(S.xp/100)+1;pxp.textContent=S.xp;pc.textContent=S.coins;pst.textContent=S.streak;lvl.textContent=l;lname.textContent=l<3?"Новичок":l<6?"Ученик":l<10?"Знаток рынка":"Мастер китайского рынка";xpf.style.width=(S.xp%100)+"%";words.innerHTML="";let all=[...DATA.vegetables,...DATA.fruits];if(!S.learned.length)words.innerHTML='<div class="muted">Пока пусто — иди в лавку.</div>';S.learned.forEach(cn=>{let q=all.find(x=>x[2]===cn);if(q)words.innerHTML+=`<div class="word"><span>${q[0]} <b>${q[2]}</b><br><span class="muted">${q[1]}</span></span><span>${q[3]}</span></div>`})}
-function toastMsg(t){toast.textContent=t;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1800)}
-update();
+function speakMisha(text){speak('喵～ '+text+' 喵！','misha')}
+function speakVendor(){const v=VENDORS[ZONES[zoneKey]?.vendor||0];speak(v.text,'vendor')}
+function renderLesson(){const z=ZONES[zoneKey],v=VENDORS[z.vendor];document.getElementById('lessonTitle').textContent=z.title;document.getElementById('lessonCounter').textContent='Урок 1/1';document.getElementById('lessonBar').style.width='35%';document.getElementById('lessonBody').innerHTML=`<div class="vendor"><div class="vendorFace">${v.face}</div><div class="vendorInfo"><b>${v.name}</b><span class="muted">У продавца свой голос.</span><button class="voiceBtn" onclick="speakVendor()">🔊 Послушать продавца</button></div></div><div class="teach"><div class="teachTop"><div class="catWrap"><div class="cat"><svg viewBox="0 0 120 120"><g class="cat-body"><path d="M30 76Q19 47 31 23L50 35Q60 29 70 35L90 22Q101 49 89 76Q82 101 60 104Q38 101 30 76" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 29L32 8L51 25M82 28L89 8L70 25" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><ellipse cx="47" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><ellipse cx="73" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><path d="M55 68Q60 73 65 68" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="90" r="9"/><path d="M53 89h14M60 83v14" stroke="#7c5113" stroke-width="2"/><path d="M33 77Q15 72 11 57Q26 61 39 72" fill="none" stroke="#e88b2f" stroke-width="10" stroke-linecap="round" class="cat-tail"/><path d="M88 58Q108 53 105 36Q102 25 96 29Q90 34 93 47" fill="#f6a45b" stroke="#8a431f" stroke-width="3" class="cat-paw"/></g></svg></div><div class="teachText"><b>Миша объясняет</b><div style="margin-top:4px">${z.intro}</div><div class="cn">${z.phrase[0]}</div><div class="py">${z.phrase[1]}</div><div class="ru">${z.phrase[2]}</div><button class="voiceBtn" onclick="speakMisha('${z.phrase[0]}')">🔊 Послушать Мишу</button></div></div><div class="rule"><b>📌 Правило</b>${z.rule}</div></div><div class="rule"><b>🧺 Слова урока</b>${z.items.map(x=>`${x[0]} <b>${x[2]}</b> — ${x[3]} — ${x[1]}`).join('<br>')}</div>`;document.getElementById('lessonNext').textContent='А теперь закрепительный тест →';document.getElementById('lessonNext').onclick=startQuiz}
+function startQuiz(){quiz=ZONES[zoneKey].items.map(x=>x);qi=0;score=0;errors=[];show('quiz');renderQuiz()}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function renderQuiz(){const z=ZONES[zoneKey];lockedAnswer=false;const q=quiz[qi];document.getElementById('quizTitle').textContent=z.title;document.getElementById('quizCounter').textContent=`${qi+1} / ${quiz.length}`;document.getElementById('quizBar').style.width=(qi/quiz.length*100)+'%';document.getElementById('quizScene').innerHTML=`<div class="teach"><div class="teachTop"><div class="catWrap"><div class="cat"><svg viewBox="0 0 120 120"><g class="cat-body"><path d="M30 76Q19 47 31 23L50 35Q60 29 70 35L90 22Q101 49 89 76Q82 101 60 104Q38 101 30 76" fill="#e88b2f" stroke="#8a431f" stroke-width="3"/><path d="M37 29L32 8L51 25M82 28L89 8L70 25" fill="#f6a45b" stroke="#8a431f" stroke-width="3"/><ellipse cx="47" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><ellipse cx="73" cy="56" rx="4" ry="5" fill="#35241b" class="cat-eye"/><path d="M55 68Q60 73 65 68" fill="none" stroke="#6d3420" stroke-width="3"/><circle class="cat-badge" cx="60" cy="90" r="9"/><path d="M53 89h14M60 83v14" stroke="#7c5113" stroke-width="2"/><path d="M33 77Q15 72 11 57Q26 61 39 72" fill="none" stroke="#e88b2f" stroke-width="10" stroke-linecap="round" class="cat-tail"/><path d="M88 58Q108 53 105 36Q102 25 96 29Q90 34 93 47" fill="#f6a45b" stroke="#8a431f" stroke-width="3" class="cat-paw"/></g></svg></div><div class="teachText"><b>Миша:</b> не спеши. Сначала вспомни правило урока.</div></div></div>`;document.getElementById('question').textContent=qi===0?ZONES[zoneKey].grammar:'Выбери правильный вариант:';document.getElementById('questionListen').onclick=()=>speakMisha(q[2]);const opts=shuffle([q,...shuffle(z.items.filter(x=>x[2]!==q[2])).slice(0,3)]);const answers=document.getElementById('answers');answers.innerHTML='';opts.forEach(o=>{const b=document.createElement('button');b.className='ans';b.innerHTML=`<div class="cn">${o[2]}</div><div class="py">${o[3]}</div><div class="ru">${o[1]}</div>`;b.onclick=()=>answer(b,o,q);answers.appendChild(b)});document.getElementById('feedback').textContent='';document.getElementById('quizNext').style.display='none'}
+function answer(btn,o,q){if(lockedAnswer)return;lockedAnswer=true;if(o[2]===q[2]){score++;S.xp+=10;S.coins+=2;if(!S.learned.includes(q[2]))S.learned.push(q[2]);btn.classList.add('ok');document.getElementById('feedback').innerHTML=`✅ <b>Правильно!</b><div class="lessonBox"><div class="cn">${q[2]}</div><div class="py">${q[3]}</div><div>Перевод: ${q[1]}</div><div>⭐ +10 XP · 🪙 +2</div></div>`}else{errors.push(q);btn.classList.add('no');document.querySelectorAll('.ans').forEach(b=>{if(b.querySelector('.cn').textContent===q[2])b.classList.add('ok')});document.getElementById('feedback').innerHTML=`👵 <b>${VENDORS[ZONES[zoneKey].vendor].name}: «哎呀！不对！再想想！»</b><div class="lessonBox">Ой-ой! Неправильно! Подумай ещё.<br><span class="muted">Правильно: ${q[2]} — ${q[3]} — ${q[1]}</span></div>`}save();document.getElementById('quizNext').style.display='block'}
+document.getElementById('quizNext').onclick=()=>{qi++;if(qi<quiz.length)renderQuiz();else finishQuiz()}
+function finishQuiz(){document.getElementById('quizBar').style.width='100%';document.getElementById('score').textContent=`${score}/${quiz.length}`;document.getElementById('resultTitle').textContent=score===quiz.length?'Продавец доволен! 🏆':score>=3?'Очень хорошо! 😺':'Миша предлагает повторить 😈';document.getElementById('resultText').textContent=`За этот тест получено +${score*10} XP и +${score*2} монет. Всего: ${S.xp} XP.`;document.getElementById('mistakes').innerHTML=errors.length?'<b>Что повторить:</b>':'<b>Все ответы правильные. Отличная работа!</b>';errors.forEach(q=>document.getElementById('mistakes').innerHTML+=`<div class="mistake">${q[0]} <b>${q[2]}</b> — ${q[3]} · ${q[1]}</div>`);document.getElementById('again').style.display=errors.length?'block':'none';document.getElementById('again').onclick=()=>{quiz=errors;qi=0;score=0;errors=[];show('quiz');renderQuiz()};if(!S.zones.includes(zoneKey))S.zones.push(zoneKey);save();show('result')}
+function shopping(){shop={tom:0,cuc:0};zoneKey='vegetables';show('shop');renderShop()}
+function renderShop(){const v=VENDORS[0];document.getElementById('vendorFace').textContent=v.face;document.getElementById('vendorName').textContent=v.name;document.getElementById('products').innerHTML='';[['🍅','помидор','西红柿','tom',5],['🥒','огурец','黄瓜','cuc',4],['🥕','морковь','胡萝卜','car',3],['🥔','картофель','土豆','pot',2]].forEach(p=>{const b=document.createElement('button');b.className='prod';b.innerHTML=`<div class="pemoji">${p[0]}</div><b>${p[1]}</b><small>${p[2]} · ${p[4]} ¥</small>`;b.onclick=()=>buy(p);document.getElementById('products').appendChild(b)});document.getElementById('shopFeedback').textContent='';document.getElementById('shopNext').style.display='none'}
+function buy(p){if(p[3]==='tom'&&shop.tom<2)shop.tom++;else if(p[3]==='cuc'&&shop.cuc<1)shop.cuc++;else{toastMsg('Миша: этого пока достаточно 😺');return}speakMisha(p[2]);if(shop.tom===2&&shop.cuc===1){document.getElementById('shopFeedback').innerHTML=`👵 <b>Бабушка Ли:</b> «很好！很好！»<div class="lessonBox"><span class="cn">两个西红柿，一个黄瓜</span><br><span class="py">Liǎng ge xīhóngshì, yí ge huángguā.</span><br>Два помидора и один огурец.<br><br><b>一共十六块钱。</b><br><span class="py">Yígòng shíliù kuài qián.</span><br>Всего 16 юаней.<br>⭐ +30 XP · 🪙 +10</div>`;S.xp+=30;S.coins+=10;['西红柿','黄瓜','一共'].forEach(x=>{if(!S.learned.includes(x))S.learned.push(x)});save();speak('两个西红柿，一个黄瓜。一共十六块钱。','vendor');document.getElementById('shopNext').style.display='block'}}
+document.getElementById('shopNext').onclick=()=>{toastMsg('Покупка завершена! 🛍️');goHome()}
+function wordsPage(){profile();}
+function profile(){show('profile');const l=Math.floor(S.xp/100)+1;document.getElementById('pxp').textContent=S.xp;document.getElementById('pc').textContent=S.coins;document.getElementById('pst').textContent=S.streak;document.getElementById('lvl').textContent=l;document.getElementById('lname').textContent=l<3?'Новичок':l<6?'Ученик':l<10?'Знаток рынка':'Мастер китайского рынка';document.getElementById('xpf').style.width=(S.xp%100)+'%';const all=Object.values(ZONES).flatMap(z=>z.items);document.getElementById('words').innerHTML=S.learned.length?S.learned.map(cn=>{const q=all.find(x=>x[2]===cn);return q?`<div class="word"><span>${q[0]} <b>${q[2]}</b><br><span class="muted">${q[1]}</span></span><span>${q[3]}</span></div>`:''}).join(''):'<div class="muted">Пока пусто — иди в лавку.</div>'}
+function conversations(){show('utility');document.getElementById('utilityTitle').textContent='💬 Разговоры с продавцами';document.getElementById('utilityText').textContent='Здесь можно потренировать короткие диалоги с продавцами рынка. Выбирай реплику и слушай китайское произношение.';document.getElementById('utilityBody').innerHTML=Object.entries(VENDORS).map(([i,v])=>`<div class="utilityItem"><div class="badgeBig">${v.face}</div><div><b>${v.name}</b><div class="muted">${v.text}</div></div><button onclick="zoneKey='${['vegetables','fruits','tea','meat'][i]||'vegetables'}';speakVendor()">🔊</button></div>`).join('')}
+function tasks(){show('utility');document.getElementById('utilityTitle').textContent='🏆 Задания дня';document.getElementById('utilityText').textContent='Выполни задания, чтобы получить XP и монеты.';document.getElementById('utilityBody').innerHTML=`<div class="utilityCard"><b>🥬 Задание 1</b><p>Пройди любой урок рынка.</p><button class="primary green" onclick="openZone('vegetables')">Начать урок</button></div><div class="utilityCard"><b>🛒 Задание 2</b><p>Собери заказ: 2 помидора и 1 огурец.</p><button class="primary green" onclick="shopping()">Идти за покупками</button></div><div class="utilityCard"><b>🧠 Задание 3</b><p>Открой новую зону учебным прогрессом.</p><button class="primary green" onclick="profile()">Мой прогресс</button></div>`}
+function rating(){show('utility');const entries=Object.entries(profiles).sort((a,b)=>(b[1].xp||0)-(a[1].xp||0));document.getElementById('utilityTitle').textContent='🏆 Рейтинг';document.getElementById('utilityText').textContent='Личный рейтинг на этом устройстве.';document.getElementById('utilityBody').innerHTML=entries.length?entries.map(([n,p],i)=>`<div class="utilityItem"><div><b>${i+1}. ${n}</b><div class="muted">Уровень ${Math.floor((p.xp||0)/100)+1}</div></div><strong>⭐ ${p.xp||0}</strong></div>`).join(''):'<div class="muted">Пока нет профилей.</div>'}
+function achievements(){show('utility');document.getElementById('utilityTitle').textContent='🏅 Достижения';document.getElementById('utilityText').textContent='Награды за учебный прогресс.';const list=[['🥇','Первый урок','Пройди первую лавку.',S.zones.length>=1],['📚','10 слов','Выучи 10 слов.',S.learned.length>=10],['🔥','Серия','Сохрани серию обучения.',S.streak>=3],['🗺️','Исследователь','Открой 5 зон.',S.zones.length>=5]];document.getElementById('utilityBody').innerHTML=list.map(x=>`<div class="utilityItem"><div class="badgeBig">${x[0]}</div><div><b>${x[1]}</b><div class="muted">${x[2]}</div></div><strong>${x[3]?'✅':'🔒'}</strong></div>`).join('')}
+function backpack(){show('utility');document.getElementById('utilityTitle').textContent='🎒 Рюкзак';document.getElementById('utilityText').textContent='Твои предметы и бонусы.';document.getElementById('utilityBody').innerHTML=`<div class="utilityItem"><div class="badgeBig">🪙</div><div><b>Монеты</b><div class="muted">Можно получать за правильные ответы и покупки.</div></div><strong>${S.coins}</strong></div><div class="utilityItem"><div class="badgeBig">🎁</div><div><b>Подарки</b><div class="muted">Бонусы продавцов появятся здесь.</div></div><strong>0</strong></div>`}
+function settings(){show('utility');document.getElementById('utilityTitle').textContent='⚙️ Настройки';document.getElementById('utilityText').textContent='Настройки игры и озвучки.';document.getElementById('utilityBody').innerHTML=`<div class="settingRow"><span>🔊 Озвучка</span><button class="toggle" onclick="speakMisha('你好！我们继续学习吧！')">Проверить</button></div><div class="settingRow"><span>🐈 Голос Миши</span><button class="toggle" onclick="speakMisha('喵～ 你好！')">Послушать</button></div><div class="settingRow"><span>👤 Профиль</span><button class="toggle" onclick="profile()">Открыть</button></div>`}
+function toastMsg(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1900)}
+document.getElementById('startGame').onclick=createProfile;renderSaved();if(current&&profiles[current])document.getElementById('identity').style.display='none';update();
 </script>
 </body></html>
-<script>
-(function(){
- if(currentName && profiles[currentName]){
-   document.getElementById("identity").style.display="none";
- }
- update();
-})();
-</script>
