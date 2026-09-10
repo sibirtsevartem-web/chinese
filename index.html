@@ -87,8 +87,10 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .mobileTopActions,.mobileBottom{pointer-events:auto!important}
 .mobileTopActions button,.mobileBottom button{pointer-events:auto!important;min-height:42px}
 .lesson{overflow:visible!important}
-.teachTop{display:flex;align-items:flex-start;gap:12px;min-width:0}
-.teachTop .catWrap{flex:0 0 84px;width:84px;height:84px;overflow:hidden}
+.teachTop{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;min-width:0;align-items:start}
+.teachTop .catWrap{position:relative!important;display:block!important;flex:0 0 auto!important;width:76px!important;height:76px!important;min-width:76px!important;margin:0 auto!important;overflow:hidden!important}
+.teachTop .cat{position:relative!important;inset:auto!important;width:100%!important;height:100%!important}
+.teachTop .cat svg{display:block!important;width:100%!important;height:100%!important;overflow:hidden!important}
 .teachText{min-width:0;overflow-wrap:anywhere;word-break:normal}
 .teachText b,.teachText .cn,.teachText .py,.teachText .ru{display:block;line-height:1.35}
 .teachText .cn{font-size:23px;margin-top:6px}
@@ -99,7 +101,30 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .word-row .word-cn{font-weight:950;font-size:20px;line-height:1.2}
 .word-row .word-py,.word-row .word-ru{display:block;line-height:1.3;margin-top:2px}
 .lessonNext{position:static!important;display:block!important;width:100%!important;margin-top:14px!important;clear:both}
-@media(max-width:430px){.teachTop .catWrap{flex-basis:70px;width:70px;height:70px}.teachText .cn{font-size:20px}.word-row .word-cn{font-size:18px}.mobileHotspots .mh{font-size:10px;padding-bottom:5px}}
+@media(max-width:430px){.teachTop .catWrap{width:64px!important;height:64px!important;min-width:64px!important}.teachText .cn{font-size:20px}.word-row .word-cn{font-size:18px}.mobileHotspots .mh{font-size:10px;padding-bottom:5px}}
+
+/* FINAL MOBILE REBUILD: one interactive layer above a subdued illustration */
+.mobileMarket{position:relative;background:linear-gradient(180deg,#d9c7a5,#8fbd91 48%,#6fa6a1);border-radius:24px;overflow:hidden;min-height:760px;box-shadow:0 10px 28px #0002}
+.mobileMapImage{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover!important;opacity:.22!important;filter:saturate(.75)!important;pointer-events:none!important}
+.mobileHotspots{position:absolute;inset:0;z-index:20;pointer-events:none}
+.mobileHotspots .mh{pointer-events:auto!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px!important;background:#fffdf8f2!important;border:3px solid #fff!important;border-radius:16px!important;color:#2b241e!important;text-shadow:none!important;font-size:13px!important;font-weight:950!important;line-height:1.15!important;box-shadow:0 5px 14px #0003!important;opacity:1!important;filter:none!important}
+.mobileHotspots .mh:after{content:attr(aria-label)!important;color:#2b241e!important}
+.mobileHotspots .mh.locked{background:#b7b3adf2!important;color:#5d5953!important;filter:grayscale(1)!important;opacity:.9!important}
+.mobileHotspots .mh.locked:before{content:'🔒';font-size:25px}
+.mobileHotspots .mh.locked:after{content:attr(aria-label) ' · закрыто'!important}
+.mobileTopActions{top:12px!important;right:12px!important;z-index:35!important}
+.mobileBottom{bottom:12px!important;z-index:35!important}
+/* prevent the baked-in navigation from competing with the real controls */
+.mobileMarket:before{content:'Китайский рынок';position:absolute;top:12px;left:12px;right:12px;z-index:30;background:#fffdf8ee;border-radius:14px;padding:10px;text-align:center;font-size:22px;font-weight:950;color:#2b241e;pointer-events:none}
+.lesson .teach{overflow:hidden}
+.lesson .teachTop{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+.lesson .teachTop .catWrap{order:0!important;margin:0 auto!important;width:74px!important;height:74px!important;flex:none!important}
+.lesson .teachText{order:1!important;width:100%!important;min-width:0!important}
+.lesson .teachText b,.lesson .teachText .cn,.lesson .teachText .py,.lesson .teachText .ru{position:static!important;display:block!important;overflow-wrap:anywhere!important}
+.lesson .lessonBodyWords{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+.lesson .word-row{position:static!important;display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;min-width:0!important;overflow:hidden!important}
+.lesson .word-row>div:last-child{min-width:0!important}
+.lesson .lessonNext{position:static!important;display:block!important;margin-top:14px!important;width:100%!important}
 </style>
 </head>
 <body>
@@ -164,7 +189,11 @@ const VENDORS=[
  {face:'👴🏻',name:'Дедушка Ван',kind:'grandpa',pitch:.78,rate:.68,text:'慢慢说，不着急。'},
  {face:'👴🏼',name:'Дедушка Чэнь',kind:'grandpa2',pitch:.92,rate:.64,text:'你要什么？'}
 ];
-let profiles=JSON.parse(localStorage.getItem('cm19_profiles')||'{}');let current=localStorage.getItem('cm19_current')||'';let S=current&&profiles[current]?profiles[current]:fresh();let zoneKey='',quiz=[],qi=0,score=0,errors=[],lockedAnswer=false,lessonStage=0,shop={tom:0,cuc:0};
+let profiles=JSON.parse(localStorage.getItem('cm19_profiles')||'{}');
+const LOCK_XP={meat:100,seafood:200,spices:300,snacks:300,homegoods:400,clothes:500};
+function refreshLocks(){document.querySelectorAll('.mobileHotspots .mh').forEach(b=>{const m=b.getAttribute('onclick')||'';const k=(m.match(/'([^']+)'/)||[])[1];if(LOCK_XP[k]&&S.xp<LOCK_XP[k])b.classList.add('locked');else b.classList.remove('locked')})}
+let current=localStorage.getItem('cm19_current')||'';let S=current&&profiles[current]?profiles[current]:fresh();let zoneKey='',quiz=[],qi=0,score=0,errors=[],lockedAnswer=false,lessonStage=0,shop={tom:0,cuc:0};
+window.addEventListener('load',()=>setTimeout(refreshLocks,50));
 function fresh(){return {xp:0,coins:0,streak:1,learned:[],zones:[]}}
 function save(){if(!current)return;profiles[current]=S;localStorage.setItem('cm19_profiles',JSON.stringify(profiles));localStorage.setItem('cm19_current',current);update()}
 function renderSaved(){const box=document.getElementById('saved');box.innerHTML='';Object.entries(profiles).slice(0,6).forEach(([n,p])=>{const b=document.createElement('button');b.innerHTML=`🐈 ${n}<small style="display:block;color:#777">⭐ ${p.xp||0} XP · 🪙 ${p.coins||0}</small>`;b.onclick=()=>useProfile(n);box.appendChild(b)})}
